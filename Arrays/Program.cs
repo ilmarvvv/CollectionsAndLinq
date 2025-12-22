@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            // ToDo: Array examples will be added later
+            // ToDo: Array examples will be added later and maybe lists
         }
     }
 }
