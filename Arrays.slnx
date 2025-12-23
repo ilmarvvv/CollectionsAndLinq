@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="Arrays/Arrays.csproj" />
+  <Project Path="ArrayMethods/ArrayMethods.csproj" Id="23ce41cf-da1c-4219-8c4c-5cd7ae5c0bfc" />
+  <Project Path="OneDimesionalArrays/OneDimensionalArrays.csproj" />
+  <Project Path="TwoDimensionalArrays/TwoDimensionalArrays.csproj" Id="9e8a4244-b25f-4e26-bcc2-313b03fde4cc" />
 </Solution>
