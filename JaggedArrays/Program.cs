@@ -4,9 +4,6 @@
     {
         static void Main(string[] args)
         {
-            // ToDO: Improve comments and check all
-
-
             Console.WriteLine("Jagged Arrays:");
 
             // Initialize the jagged array
