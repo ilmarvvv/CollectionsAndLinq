@@ -196,7 +196,11 @@ namespace LINQMethods
 
             #endregion
 
-            #region
+            #region DistinctBy(); - remove duplicate elements from collection by specified key;
+
+            var distinctByName = peopleWithDuplicates.DistinctBy(p => p.Name); // contains only two unique "Alice" and "Bob"
+
+            // TODO: Add example for DistinctBy(x=> key, comparer) with custom comparer
 
             #endregion
 
