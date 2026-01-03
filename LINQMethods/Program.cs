@@ -172,15 +172,27 @@ namespace LINQMethods
 
             #region DefaultIfEmpty(); - provide default or custom value if collection is empty;
 
-            var emptyArray = new int[] { }.DefaultIfEmpty(); // {0} because the default value for int is 0
+            var defaultIfEmpty = new int[] { }.DefaultIfEmpty(); // {0} because the default value for int is 0
 
-            var emptyArrayWithCustomDefault = new int[] { }.DefaultIfEmpty(42); // {42} because we provided a custom default value of 42
+            var defaultIfEmptyWithCustomDefault = new int[] { }.DefaultIfEmpty(42); // {42} because we provided a custom default value of 42
 
             // DefaultIfEmpty(); - usually used to avoid exceptions when performing operations on potentially empty collections.
             var avg = new int[] { }.DefaultIfEmpty().Average(); // 0 because default value for int is 0
             #endregion
 
-            #region
+            #region Distinct(); - remove duplicate elements from collection;
+
+            var distinct = new int[] { 1, 2, 2, 3, 4, 4, 4, 5 }.Distinct(); // {1, 2, 3, 4, 5}
+
+            // also can delete duplicates in complex types with custom comparer as Contains() method above
+            var peopleWithDuplicates = new List<Person>
+            {
+                new Person { Name = "Alice" },
+                new Person { Name = "Bob" },
+                new Person { Name = "Alice" } // duplicate
+            };
+
+            var distinctPeople = peopleWithDuplicates.Distinct(new PersonNameComparer()); // contains only two unique "Alice" and "Bob"
 
             #endregion
 
