@@ -204,11 +204,15 @@ namespace LINQMethods
 
             #endregion
 
-            #region
+            #region ElementAt(); - get element at specified index, with or without default value;
+
+            var elementAtIndex = new int[] { 1, 2, 3, 4 }.ElementAt(2); // 3 becouse index 2 is the third element
 
             #endregion
 
-            #region
+            #region ElementAtOrDefault(); - get element at specified index or default value if index is out of range;
+
+            var elementAtIndexWithDefault = new int[] { }.ElementAtOrDefault(0); // 0
 
             #endregion
 
