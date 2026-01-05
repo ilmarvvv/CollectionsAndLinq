@@ -216,6 +216,71 @@ namespace LINQMethods
 
             #endregion
 
+            #region Empty(); - create an empty collection of specified type;
+
+            // Using when you need return empty collection from method
+            // Good for LINQ you can avoid null reference exceptions
+            var emptyArray = Enumerable.Empty<int>(); // creates an empty IEnumerable<int>
+            var emptyList = new List<string>(); // creates an empty List<string>
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
+            #region
+
+            #endregion
+
             #region
 
             #endregion
