@@ -225,23 +225,71 @@ namespace LINQMethods
 
             #endregion
 
-            #region
+            #region Except(); - get elements from first collection that are not in second collection;
+
+            // compare first array with second and return only those elements that are in the first array but not in the second array
+            // all result is unique
+            int[] arrayForExcept1 = { 1, 1, 2, 3, 4 };
+            int[] arrayForExcept2 = { 3, 4 }; // array that blocks elements from first array
+
+            var result = arrayForExcept1.Except(arrayForExcept2); // {1, 2} because 1 and 2 are not in arrayForExcept2 in simple words : result = arrayForExcept1 - arrayForExcept2
+
+            // TODO: Add example for Except() with custom comparer for complex types
 
             #endregion
 
-            #region
+            #region ExceptBy(); - get elements from first collection that are not in second collection by specified key;
+
+            var peopleExcept = new[]
+               {
+                    new Pet("Ann", 3),
+                    new Pet("Ann", 2),
+                    new Pet("Bob", 3),
+                    new Pet("Carl", 4)
+                };
+
+            var blockedNames = new[] { "Bob" }; // names to block
+
+            var exceptByResult = peopleExcept.ExceptBy(blockedNames, p => p.Name); // contains only Pets with names "Ann" and "Carl", "Bob" is excluded
+
+            // TODO: Add example for ExceptBy(keys, x => key, comparer) with custom comparer
 
             #endregion
 
-            #region
+            #region First(); - get first element from collection, with or without condition;
+
+            int[] firstArray = { 1, 3, 4, 6 };
+
+            int first = firstArray.First();   // 1
+
+            // overload with condition
+            int firstEven = firstArray.First(x => x % 2 == 0); // 4 because 4 is the first even number in the array that satisfies the condition
+
+            // NOTICE: If the collection is empty or no elements satisfy the condition, First() will throw an InvalidOperationException.
 
             #endregion
 
-            #region
+            #region FirstOrDefault(); - get first element from collection or default value if collection is empty, with or without condition;
+
+            int[] firstOrDefaultArray = { 1, 3, 4, 6 };
+
+            int firstOrDefault = firstOrDefaultArray.FirstOrDefault();   // 1
+
+            // overload with default value
+            int firstOrDefaultWithDefault = new int[] { }.FirstOrDefault(999);   // 999
+
+            // if collection is empty return default value
+            int firstOrDefaultEmpty = new int[] { }.FirstOrDefault(); // 0 because the array is empty and default value for int is 0
+
+            // overload with condition
+            int firstOrDefaultWithCondition = firstOrDefaultArray.FirstOrDefault(x => x % 2 == 0); // 4 because 4 is the first even number in the array that satisfies the condition
+
+            // 999 because no elements satisfy the condition and we provided a default value of 999
+            int firstOrDefaultWithConditionAndDefault = firstOrDefaultArray.FirstOrDefault(x => x > 10, 999); 
 
             #endregion
 
-            #region
+            #region 
 
             #endregion
 
@@ -328,6 +376,17 @@ namespace LINQMethods
 
 
         }
+    }
+    class Pet
+    {
+        public string Name;
+        public int Age;
+        public Pet(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+
     }
 
     class Person
