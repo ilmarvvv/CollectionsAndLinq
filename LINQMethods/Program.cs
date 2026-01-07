@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
 namespace LINQMethods
 {
@@ -7,9 +6,7 @@ namespace LINQMethods
     {
         static void Main(string[] args)
         {
-            // TODO: Demonstrate some LINQ methods here
 
-            /* Aggregate Operator */
             #region Aggregate(); - Universal method can be used for any mathematic operation and concatenation with any type and more...
 
             // Aggregate(Func<TSource, TSource, TSource>)
@@ -21,7 +18,7 @@ namespace LINQMethods
 
             // Aggregate(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate>)
             // Similar to previous, but you can add starter value
-            int aggregateWithSeed = new int[] { 1, 2, 3, 4 }.Aggregate(10,(acc, x) => acc + x); // result is 20 because 10 + 1 + 2 + 3 + 4 = 20
+            int aggregateWithSeed = new int[] { 1, 2, 3, 4 }.Aggregate(10, (acc, x) => acc + x); // result is 20 because 10 + 1 + 2 + 3 + 4 = 20
             // 0 - starter value of accumulator
 
 
@@ -43,8 +40,6 @@ namespace LINQMethods
             // 2. Research usage of Aggregate operator in real-world scenarios
 
             #endregion
-
-            /* Condition */
 
             #region All(); - check if all elements satisfy a condition;
 
@@ -68,9 +63,6 @@ namespace LINQMethods
 
             #endregion
 
-
-            /* Other Method*/
-
             #region Append(); - add element to the end of collection;
 
             // Append(TSource)
@@ -93,7 +85,7 @@ namespace LINQMethods
             double average = new int[] { 1, 2, 3, 4, 5 }.Average(); // result is 3.0 because (1 + 2 + 3 + 4 + 5) / 5 = 3.0
 
 
-            var people = new[]{ new { Name = "Ann", Age = 20 }, new { Name = "Bob", Age = 30 }, new { Name = "Carl", Age = 40 }};
+            var people = new[] { new { Name = "Ann", Age = 20 }, new { Name = "Bob", Age = 30 }, new { Name = "Carl", Age = 40 } };
             // This Average with selector for collections of complex types
             var averageWithSelector = people.Average(p => p.Age); // result is 30.0 because (20 + 30 + 40) / 3 = 30.0
 
@@ -115,7 +107,7 @@ namespace LINQMethods
             #region Chunk(); - split collection into smaller collections of specified size;
 
             // Chunk(int)
-            int[] array = { 1, 2, 3, 4, 5, 6, 7};
+            int[] array = { 1, 2, 3, 4, 5, 6, 7 };
 
 
             var chunks = array.Chunk(3);
@@ -285,11 +277,123 @@ namespace LINQMethods
             int firstOrDefaultWithCondition = firstOrDefaultArray.FirstOrDefault(x => x % 2 == 0); // 4 because 4 is the first even number in the array that satisfies the condition
 
             // 999 because no elements satisfy the condition and we provided a default value of 999
-            int firstOrDefaultWithConditionAndDefault = firstOrDefaultArray.FirstOrDefault(x => x > 10, 999); 
+            int firstOrDefaultWithConditionAndDefault = firstOrDefaultArray.FirstOrDefault(x => x > 10, 999);
 
             #endregion
 
-            #region 
+            #region GroupBy(); - group elements in collection by specified key;
+
+            var pet = new[]
+            {
+                new Pet("Ann",  "Berlin", 2),
+                new Pet("Bob",  "Berlin", 3),
+                new Pet("Carl", "Hamburg", 4),
+                new Pet("Dina", "Hamburg", 2),
+                new Pet("Eve",  "BERLIN", 3),
+            };
+
+            // GroupBy has multiple overloads, here are some examples:
+
+            // 1. GroupBy(keySelector)
+            var groupedByCity = pet.GroupBy(p => p.City);
+            // Group pets by their City property like this
+            // Berlin → [ (Ann, 2), (Bob, 3) ]
+            // Hamburg → [ (Carl, 4), (Dina, 2) ]
+            // BERLIN → [ (Eve, 3) ]  (note: "BERLIN" is treated as a separate group due to case sensitivity)
+
+            // Example how to use the grouped result
+            //foreach (var group in groupedByCity)
+            //{
+            //    Console.WriteLine($"City: {group.Key}");
+            //    foreach (var petInGroup in group)
+            //    {
+            //        Console.WriteLine($" - Pet Name: {petInGroup.Name}, Age: {petInGroup.Age}");
+            //    }
+            //}
+
+
+            // 2. GroupBy(keySelector, comparer)
+            // Using StringComparer.OrdinalIgnoreCase to make the grouping case-insensitive
+            // "Berlin" == "berlin" == "BERLIN"
+            var groups = pet.GroupBy(p => p.City, StringComparer.OrdinalIgnoreCase);
+
+
+            // 3. GroupBy(keySelector, elementSelector)
+            // elementSelector - used to select what is stored in each group
+            var groupsWithElementSelector = pet.GroupBy(
+                p => p.City,
+                p => p.Name // group by City but select only Name property for each pet in the group
+                // p => new { p.Name, p.Age } // you can select multiple properties like this, more people use anonymous type
+                // p => (p.Name, p.Age // or select tuple
+                // p => new PetInfo { p.Name, p.Age } // or select custom type
+                // p => p // or select the whole object
+                );
+
+            // 4. GroupBy(keySelector, elementSelector, comparer)
+            var groupsWithElementSelectorAndComparer = pet.GroupBy(
+                p => p.City, // keySelector
+                p => p.Name, // elementSelector
+                StringComparer.OrdinalIgnoreCase // comparer
+            );
+
+            // 5. GroupBy(keySelector,resultSelector)
+            var summary = pet.GroupBy(
+                p => p.City,
+                (city, items) => new
+                {
+                    City = city, // sorted by city
+                    Count = items.Count(), // number of pets in each city
+                    AvgAge = items.Average(p => p.Age) // average age of pets in each city
+                }
+            );
+
+            // result:
+            // City: Berlin, Count: 2, AvgAge: 2.5
+            // City: Hamburg, Count: 2, AvgAge: 3
+            // City: BERLIN, Count: 1, AvgAge: 3
+
+            // 6. GroupBy(keySelector, resultSelector, comparer)
+            var summaryWithComparer = pet.GroupBy(
+                p => p.City, // keySelector
+                (city, items) => new { City = city, Count = items.Count() }, // resultSelector this mean return only city and count
+                StringComparer.OrdinalIgnoreCase // comparer
+            );
+
+            // result:
+            // City: Berlin, Count: 3
+            // City: Hamburg, Count: 2
+            // NOTE: "Berlin" and "BERLIN" are treated as the same group due to case insensitivity
+
+            // 7. GroupBy(keySelector, elementSelector, resultSelector)
+
+            var summaryWithElementSelector = pet.GroupBy(
+                p => p.City, // keySelector
+                p => p.Age, // elementSelector - select only Age property for each pet in the group
+                (city, ages) => new// resultSelector
+                {
+                    City = city,
+                    Min = ages.Min(),
+                    Max = ages.Max()
+                }
+            );
+
+            // result:
+            // City: Berlin, Min: 2, Max: 3
+            // City: Hamburg, Min: 2, Max: 4
+            // City: BERLIN, Min: 3, Max: 3
+
+            // 8. GroupBy(keySelector, elementSelector, resultSelector, comparer)
+            var summaryWithElementSelectorAndComparer = pet.GroupBy(
+                p => p.City, // keySelector
+                p => p.Age, // elementSelector
+                (city, ages) => new // resultSelector
+                {
+                    City = city,
+                    Min = ages.Min(),
+                    Max = ages.Max()
+                },
+                StringComparer.OrdinalIgnoreCase // comparer
+            );
 
             #endregion
 
@@ -381,9 +485,16 @@ namespace LINQMethods
     {
         public string Name;
         public int Age;
+        public string City;
         public Pet(string name, int age)
         {
             Name = name;
+            Age = age;
+        }
+        public Pet(string name, string city, int age)
+        {
+            Name = name;
+            City = city;
             Age = age;
         }
 
