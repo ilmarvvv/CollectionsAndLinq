@@ -397,19 +397,131 @@ namespace LINQMethods
 
             #endregion
 
-            #region
+            #region GroupJoin(); - correlate elements from two collections based on matching keys and group the results;
+
+            // 1. GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector) - without comparer
+
+            var customers = new[]
+            {
+                new Customer(1, "Ann"),
+                new Customer(2, "Bob"),
+            };
+
+            var orders = new[]
+            {
+                new Order(1, "Pizza"),
+                new Order(1, "Tea"),
+                new Order(2, "Burger"),
+            };
+
+            var resultGroupJoin = customers. // outer collection
+                GroupJoin(  
+                orders,                      // inner collection
+                c => c.Id,                   // outer key
+                o => o.CustomerId,           // inner key
+                (c, os) => new               // result selector
+                {
+                    c.Name,                  // customer name
+                    Items = os.Select(x => x.Item).ToList() // list of order items for the customer
+                }
+            );
+
+            // foreach (var x in resultGroupJoin)
+            // Console.WriteLine($"{x.Name}: {string.Join(", ", x.Items)}");
+
+            // result
+            // Ann -> [ "Pizza", "Tea" ]
+            // Bob -> [ "Burger" ]
+
+
+            // 2. GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, comparer) - with comparer
+
+            var users = new[] { new User("Ann@Mail.com") };
+            var logins = new[] { 
+                new Login("ann@mail.com", DateTime.Now),
+                new Login("bob@mail.com", DateTime.Now),
+                new Login("CHARLIE@MAIL.COM", DateTime.Now),
+                new Login("ANN@mail.com", DateTime.Now)
+            };
+
+            var resultGroupJoinWithComparer = users. // outer collection
+                GroupJoin(
+                  logins,       // inner collection
+                  u => u.Email, // outer key selector
+                  l => l.Email, // inner key selector
+                  (u, ls) => new { u.Email, Count = ls.Count() }, // result selector
+                  StringComparer.OrdinalIgnoreCase
+            );
+
+            // result:
+            // Ann@Mail.com -> 2 (two logins matched ignoring case)
 
             #endregion
 
-            #region
+            #region Intersect(); - get common elements from two collections;
+
+            // 1. Intersect(IEnumerable<TSource>)
+            var arrayForIntersect1 = new int[] { 1, 2, 3, 4 };
+            var arrayForIntersect2 = new int[] { 3, 4, 5, 6 };
+
+            var intersect = arrayForIntersect1.Intersect(arrayForIntersect2); // {3, 4} because 3 and 4 are common in both arrays
+
+            // 2. Intersect(IEnumerable<TSource>, IEqualityComparer<TSource>) - with custom comparer for complex types
+            // TODO: Add examples for Intersect() with custom comparer for complex types
 
             #endregion
 
-            #region
+            #region InterestBy(); - get common elements from two collections by specified key;
+            // 1. IntersectBy(IEnumerable<TKey>, Func<TSource, TKey>) - by key selector
+            var usersForIntersect = new[]
+            {
+                new UserForIntersect { Id = 1, Name = "Ann" },
+                new UserForIntersect { Id = 2, Name = "Bob" },
+                new UserForIntersect { Id = 3, Name = "Carl" }
+            };
+
+            var ids = new[] { 2, 3 };
+
+            var resultIntersectBy = usersForIntersect.IntersectBy(ids, u => u.Id); // contains only users with Id 2 and 3 (Bob and Carl)
+
+            // 2. IntersectBy(IEnumerable<TKey>, Func<TSource, TKey>, IEqualityComparer<TKey>) - by key selector with custom comparer
+
+            var words = new[] { "Apple", "Banana", "Orange" };
+            var filter = new[] { "apple", "banana" };
+
+            var resultForIntersectBy = words.IntersectBy(
+                filter,
+                w => w, // key selector
+                StringComparer.OrdinalIgnoreCase
+            );
+
+
 
             #endregion
 
-            #region
+            #region Join(); - correlate elements from two collections based on matching keys;
+
+            // 1. Join(outer, inner, outerKeySelector, innerKeySelector, resultSelector) - without comparer
+            int[] firstJoin = { 1, 2, 3 };
+            int[] secondJoin = { 2, 3, 4 };
+
+            var joinResult = firstJoin.Join(
+                secondJoin,
+                x => x, // outer key selector
+                y => y, // inner key selector
+                (x, y) => x // result selector
+            ); // result: {2, 3} because 2 and 3 are common in both arrays
+
+            // 2. Join(outer, inner, outerKeySelector, innerKeySelector, resultSelector, comparer) - with comparer
+            var joinResultWithComparer = firstJoin.Join(
+                secondJoin,
+                x => x,
+                y => y,
+                (x, y) => x,
+                EqualityComparer<int>.Default // using default equality comparer for int
+            );
+
+            // result: {2, 3} because 2 and 3 are common in both arrays
 
             #endregion
 
@@ -516,4 +628,14 @@ namespace LINQMethods
             return p.Name.GetHashCode();
         }
     }
+    class UserForIntersect
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    record Customer(int Id, string Name);
+    record Order(int CustomerId, string Item);
+    record User(string Email);
+    record Login(string Email, DateTime At);
 }
