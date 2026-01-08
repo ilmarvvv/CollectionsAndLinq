@@ -525,27 +525,163 @@ namespace LINQMethods
 
             #endregion
 
-            #region
+            #region Last(); - get last element from collection, with or without condition;
 
             #endregion
 
-            #region
+            #region LastOrDefault(); - get last element from collection or default value if collection is empty, with or without condition;
 
             #endregion
 
-            #region
+            #region LongCount(); - count elements in collection, with or without condition, returns long type;
 
             #endregion
 
-            #region
+            #region Max(); - get maximum value from numeric collection, with or without selector;
 
             #endregion
 
-            #region
+            #region MaxBy(); - get element with maximum key value from collection;
 
             #endregion
 
-            #region
+            #region Min(); - get minimum value from numeric collection, with or without selector;
+
+            #endregion
+
+            #region MinBy(); - get element with minimum key value from collection;
+
+            #endregion
+
+            #region OfType(); - filter elements by specified type;
+
+            #endregion
+
+            #region Order(); - sort elements in collection in ascending order, with or without key selector and comparer;
+
+            #endregion
+
+            #region OrderBy(); - sort elements in collection in ascending order by specified key, with or without comparer;
+
+            #endregion
+
+            #region OrderByDescending(); - sort elements in collection in descending order by specified key, with or without comparer;
+
+            #endregion
+
+            #region OrderDescending(); - sort elements in collection in descending order, with or without key selector and comparer;
+
+            #endregion
+
+            #region Prepend(); - add element to the beginning of collection;
+
+            #endregion
+
+            #region Range(); - create a collection with a range of sequential numbers;
+
+            #endregion
+
+            #region Repeat(); - create a collection with repeated elements;
+
+            #endregion
+
+            #region Reverse(); - reverse the order of elements in collection;
+
+            #endregion
+
+            #region Select(); - project each element of a collection into a new form;
+
+            #endregion
+
+            #region SelectMany(); - project each element of a collection to an IEnumerable<T> and flatten the resulting collections into one collection;
+
+            #endregion
+
+            #region SequenceEqual(); - check if two collections are equal;
+
+            #endregion
+
+            #region Single(); - get single element from collection, with or without condition;
+
+            #endregion
+
+            #region SingleOrDefault(); - get single element from collection or default value if collection is empty, with or without condition;
+
+            #endregion
+
+            #region Skip(); - skip specified number of elements in collection;
+
+            #endregion
+
+            #region SkipLast(); - skip specified number of elements from the end of collection;
+
+            #endregion
+
+            #region SkipWhile(); - skip elements in collection while condition is true;
+
+            #endregion
+
+            #region Sum(); - calculate sum of numeric collection, with or without selector;
+
+            #endregion
+
+            #region Take(); - take specified number of elements from collection;
+
+            #endregion
+
+            #region TakeLast(); - take specified number of elements from the end of collection;
+
+            #endregion
+
+            #region TakeWhile(); - take elements from collection while condition is true;
+
+            #endregion
+
+            #region ThenBy(); - perform a subsequent ordering of elements in collection in ascending order by specified key, with or without comparer;
+
+            #endregion
+
+            #region ThenByDescending(); - perform a subsequent ordering of elements in collection in descending order by specified key, with or without comparer;
+
+            #endregion
+
+            #region ToArray(); - convert collection to array;
+
+            #endregion
+
+            #region ToDictionary(); - convert collection to dictionary by specified key and element selectors, with or without comparer;
+
+            #endregion
+
+            #region ToHashSet(); - convert collection to HashSet, with or without comparer;
+
+            #endregion
+
+            #region ToList(); - convert collection to List;
+
+            #endregion
+
+            #region ToLookup(); - convert collection to Lookup by specified key and element selectors, with or without comparer;
+
+            #endregion
+
+            #region TryGetNonEnumeratedCount(); - try to get count of elements in collection without enumerating it;
+
+            #endregion
+
+            #region Union(); - get unique elements from two collections;
+
+            #endregion
+
+            #region UnionBy(); - get unique elements from two collections by specified key;
+
+            #endregion
+
+            #region Where(); - filter elements in collection by specified condition;
+
+            #endregion
+
+            #region Zip(); - merge two collections by combining corresponding elements;
 
             #endregion
 
