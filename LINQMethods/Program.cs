@@ -6,6 +6,7 @@ namespace LINQMethods
     {
         static void Main(string[] args)
         {
+            // .NET 10 LINQ Methods examples with explanations
 
             #region Aggregate(); - Universal method can be used for any mathematic operation and concatenation with any type and more...
 
@@ -38,6 +39,10 @@ namespace LINQMethods
             //ToList()    acc.Add(x)
 
             // 2. Research usage of Aggregate operator in real-world scenarios
+
+            #endregion
+
+            #region AggregateBy(); - Universal method can be used for any mathematic operation and concatenation with any type and more... with key selector;
 
             #endregion
 
@@ -160,7 +165,11 @@ namespace LINQMethods
             int count = new int[] { 1, 2, 3, 4 }.Count(); // 4
             int countWithCondition = new int[] { 1, 2, 3, 4 }.Count(x => x > 2); // 2 because only 3 and 4 are greater than 2
 
-            #endregion DefaultIfEmpty(); - provide default value if collection is empty;
+            #endregion
+
+            #region CountBy(); - count elements in collection by specified key, with or without condition;
+
+            #endregion
 
             #region DefaultIfEmpty(); - provide default or custom value if collection is empty;
 
@@ -458,6 +467,14 @@ namespace LINQMethods
 
             #endregion
 
+            #region Index(); - get index of each element in collection;
+
+            #endregion
+
+            #region InfiniteSequence(); - create an infinite collection by specified generator function;
+
+            #endregion
+
             #region Intersect(); - get common elements from two collections;
 
             // 1. Intersect(IEnumerable<TSource>)
@@ -533,6 +550,10 @@ namespace LINQMethods
 
             #endregion
 
+            #region LeftJoin(); - perform left outer join between two collections;
+
+            #endregion
+
             #region LongCount(); - count elements in collection, with or without condition, returns long type;
 
             #endregion
@@ -585,6 +606,10 @@ namespace LINQMethods
 
             #endregion
 
+            #region RightJoin(); - perform right outer join between two collections;
+
+            #endregion
+
             #region Reverse(); - reverse the order of elements in collection;
 
             #endregion
@@ -597,7 +622,15 @@ namespace LINQMethods
 
             #endregion
 
+            #region Sequence(); - generate a sequence of values based on a generator function;
+
+            #endregion
+
             #region SequenceEqual(); - check if two collections are equal;
+
+            #endregion
+
+            #region Shuffle(); - randomly shuffle elements in collection;
 
             #endregion
 
