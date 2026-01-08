@@ -31,6 +31,10 @@ namespace LINQMethods
 
             #endregion
 
+            #region Index(); - get index of each element in collection;
+
+            #endregion
+
             // Sorting (Сортування)
 
             #region Order(); - sort elements in collection in ascending order, with or without key selector and comparer;
@@ -58,6 +62,10 @@ namespace LINQMethods
             #endregion
 
             #region Reverse(); - reverse the order of elements in collection;
+
+            #endregion
+
+            #region Shuffle(); - randomly shuffle elements in collection;
 
             #endregion
 
@@ -329,6 +337,10 @@ namespace LINQMethods
 
             #endregion
 
+            #region CountBy(); - count elements in collection by specified key, with or without condition;
+
+            #endregion
+
             #region LongCount(); - count elements in collection, with or without condition, returns long type;
 
             #endregion
@@ -401,6 +413,10 @@ namespace LINQMethods
             //ToList()    acc.Add(x)
 
             // 2. Research usage of Aggregate operator in real-world scenarios
+
+            #endregion
+
+            #region AggregateBy(); - Universal method can be used for any mathematic operation and concatenation with any type and more... with key selector;
 
             #endregion
 
@@ -554,6 +570,14 @@ namespace LINQMethods
 
             #endregion
 
+            #region LeftJoin(); - perform left outer join between two collections;
+
+            #endregion
+
+            #region RightJoin(); - perform right outer join between two collections;
+
+            #endregion
+
             #region GroupJoin(); - correlate elements from two collections based on matching keys and group the results;
 
             // 1. GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector) - without comparer
@@ -631,6 +655,14 @@ namespace LINQMethods
             #endregion
 
             #region Repeat(); - create a collection with repeated elements;
+
+            #endregion
+
+            #region InfiniteSequence(); - create an infinite collection by specified generator function;
+
+            #endregion
+
+            #region Sequence(); - generate a sequence of values based on a generator function;
 
             #endregion
 
