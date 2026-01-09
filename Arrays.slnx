@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/ClassArray/" />
+  <Folder Name="/ClassArray/ExplicitInterfaceImplementations/" />
+  <Folder Name="/ClassArray/Methods/" />
+  <Folder Name="/ClassArray/Properties/" />
   <Folder Name="/Exercises/">
     <Project Path="ExercisesEasy/ExerciseTest.csproj" Id="1802469e-72cd-48ca-8ffe-3d190bd0842e" />
   </Folder>
