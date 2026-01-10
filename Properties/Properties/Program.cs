@@ -54,6 +54,16 @@
 
             #region LongLength - return the total number of elements in all dimensions of the array as a long
 
+            int[] numbers = { 1, 2, 3 };
+            long length1D = numbers.LongLength; // 3
+
+            int[,] matrix = new int[2, 3];
+            long length2D = matrix.LongLength; // 6
+
+            // NOTE: Don't use it in loops or indexing because it's a long (Int64) and can cause performance issues.
+            // NOTE: LongLength is the same as Length but returns a long (Int64)
+            // NOTE: Use Length for indexing and loops, LongLength for large array checks
+
             #endregion
 
             #region Rank - gets the number of dimensions of the array
