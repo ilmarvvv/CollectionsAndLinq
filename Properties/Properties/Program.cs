@@ -105,6 +105,11 @@
 
             #region MaxLength - gets the maximum number of elements an array can contain
 
+            int requestedSize = 1000000000; // Example size
+            if (requestedSize > Array.MaxLength)
+                throw new ArgumentOutOfRangeException();
+
+
             #endregion
 
             // Collection / Threading
