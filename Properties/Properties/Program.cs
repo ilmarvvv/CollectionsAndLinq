@@ -116,6 +116,22 @@
 
             #region IsFixedSize - gets a value indicating whether the array has a fixed size
 
+            int[] array = { 1, 2, 3 };
+
+
+            // Purpose: Determine if the array size can be changed if true then size is fixed and cannot be changed
+            bool isFixedSize = array.IsFixedSize; // true
+
+            // Array: true
+            // List<T>: false
+            // ReadOnlyCollection<T>: true
+            // ArrayList: false
+
+            // NOTE: Arrays always have a fixed size
+            // NOTE: Elements can be modified, but the array size cannot be changed
+
+
+
             #endregion
 
             #region IsReadOnly - gets a value indicating whether the array is read-only
