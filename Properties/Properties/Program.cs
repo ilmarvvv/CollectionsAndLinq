@@ -147,10 +147,32 @@
             #endregion
 
             #region IsSynchronized - gets a value indicating whether access to the array is synchronized (thread safe)
+            // Purpose: Determine if the array is thread-safe if true then it is thread-safe
+            int[] arrayS = { 1, 2, 3 };
+
+            bool isSynchronized = arrayS.IsSynchronized; // false
+
+            // NOTE: Arrays are not thread-safe
+            // NOTE: Access to the array is not synchronized
 
             #endregion
 
             #region SyncRoot - gets an object that can be used to synchronize access to the array
+
+            // Purpose: Provide an object for synchronizing access to the array
+            int[] arraySync = { 1, 2, 3 };
+
+            // Get the synchronization root object
+            object syncRoot = arraySync.SyncRoot;
+
+            // Example: using SyncRoot to synchronize access
+            lock (syncRoot)
+            {
+                array[0]++;
+            }
+
+            // NOTE: SyncRoot does not make the array thread-safe by itself
+            // NOTE: Use lock with SyncRoot for manual synchronization
 
             #endregion
         }
