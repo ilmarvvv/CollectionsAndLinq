@@ -136,6 +136,14 @@
 
             #region IsReadOnly - gets a value indicating whether the array is read-only
 
+            // Purpose: Determine if the array can be modified if true then it cannot be modified
+            int[] arrayN = { 1, 2, 3 };
+
+            bool isReadOnly = arrayN.IsReadOnly; // false
+
+            // NOTE: Arrays are not read-only
+            // NOTE: Elements can be modified, but the array size is fixed
+
             #endregion
 
             #region IsSynchronized - gets a value indicating whether access to the array is synchronized (thread safe)
