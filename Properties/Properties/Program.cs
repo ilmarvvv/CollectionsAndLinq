@@ -68,6 +68,37 @@
 
             #region Rank - gets the number of dimensions of the array
 
+            // One-dimensional array
+            int[] array1D = { 1, 2, 3 };
+            int rank1 = array1D.Rank; // 1
+
+            // Two-dimensional array
+            int[,] array2D = new int[3, 4];
+            int rank2 = array2D.Rank; // 2
+
+            // Three-dimensional array
+            int[,,] array3D = new int[2, 3, 4];
+            int rank3 = array3D.Rank; // 3
+
+            // Jagged array (array of arrays)
+            int[][] jaggedArray = new int[3][];
+            int rank4 = jaggedArray.Rank; // 1
+            // NOTE: for jagged arrays, Rank is always 1 regardless of how many levels of arrays there are.
+
+            // Example: checking ranking if you don't know the dimensions
+
+            void Process(Array array)
+            {
+                if (array.Rank == 1)
+                {
+                    // логіка для 1D
+                }
+                else if (array.Rank == 2)
+                {
+                    // логіка для 2D
+                }
+            }
+
             #endregion
 
             // Limits
