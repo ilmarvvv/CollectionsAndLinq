@@ -66,7 +66,7 @@
 
             #endregion
 
-            #region Rank - gets the number of dimensions of the array
+            #region Rank - number of dimensions of the array
 
             // One-dimensional array
             int[] array1D = { 1, 2, 3 };
@@ -103,7 +103,7 @@
 
             // Limits
 
-            #region MaxLength - gets the maximum number of elements an array can contain
+            #region MaxLength - maximum number of elements an array can contain
 
             int requestedSize = 1000000000; // Example size
             if (requestedSize > Array.MaxLength)
@@ -114,7 +114,7 @@
 
             // Collection / Threading
 
-            #region IsFixedSize - gets a value indicating whether the array has a fixed size
+            #region IsFixedSize - indicating whether the array has a fixed size
 
             int[] array = { 1, 2, 3 };
 
@@ -134,7 +134,7 @@
 
             #endregion
 
-            #region IsReadOnly - gets a value indicating whether the array is read-only
+            #region IsReadOnly - indicating whether the array is read-only
 
             // Purpose: Determine if the array can be modified if true then it cannot be modified
             int[] arrayN = { 1, 2, 3 };
@@ -146,7 +146,7 @@
 
             #endregion
 
-            #region IsSynchronized - gets a value indicating whether access to the array is synchronized (thread safe)
+            #region IsSynchronized - indicating whether access to the array is synchronized (thread safe)
             // Purpose: Determine if the array is thread-safe if true then it is thread-safe
             int[] arrayS = { 1, 2, 3 };
 
@@ -157,7 +157,7 @@
 
             #endregion
 
-            #region SyncRoot - gets an object that can be used to synchronize access to the array
+            #region SyncRoot - object that can be used to synchronize access to the array
 
             // Purpose: Provide an object for synchronizing access to the array
             int[] arraySync = { 1, 2, 3 };
