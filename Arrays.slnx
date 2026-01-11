@@ -1,9 +1,9 @@
 <Solution>
   <Folder Name="/ClassArray/">
+    <Project Path="Methods/Methods.csproj" Id="1cef98fd-cf48-4457-b865-4ae25dbae0a8" />
     <Project Path="Properties/Properties/Properties.csproj" Id="7a202642-c0db-45bc-a5c0-e313ebb55bf9" />
   </Folder>
   <Folder Name="/ClassArray/ExplicitInterfaceImplementations/" />
-  <Folder Name="/ClassArray/Methods/" />
   <Folder Name="/Exercises/">
     <Project Path="ExercisesEasy/ExerciseTest.csproj" Id="1802469e-72cd-48ca-8ffe-3d190bd0842e" />
   </Folder>
