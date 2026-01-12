@@ -169,12 +169,30 @@
             // Instance
             #endregion
 
-
             #region MemberwiseClone() - protected Object method used internally by Array.Clone()
 
             #endregion
 
-            // 10. Rare / Legacy methods
+            // 10. Extension methods
+
+            #region AsParallel() - enables parallel operations on arrays
+            // Static
+            #endregion
+
+            #region AsQueryable() - enables LINQ queries on arrays
+            // Static
+            #endregion
+
+            #region Cast<TResult>() - casts the elements of an array to the specified type
+            // Static
+            #endregion
+
+            #region OfType<TResult>() - filters the elements of an array based on a specified type
+            // Static
+            #endregion
+
+
+            // 11. Rare / Legacy methods
 
             #region Initialize() - initializes every element of the specified array
             // Instance
