@@ -8,7 +8,6 @@
     <Project Path="ExercisesEasy/ExerciseTest.csproj" Id="1802469e-72cd-48ca-8ffe-3d190bd0842e" />
   </Folder>
   <Folder Name="/Methods/">
-    <Project Path="ArrayMethods/ArrayMethods.csproj" Id="23ce41cf-da1c-4219-8c4c-5cd7ae5c0bfc" />
     <Project Path="LINQMethods/LINQMethods.csproj" Id="0761f5e1-c4e6-4022-921c-562527720cd6" />
   </Folder>
   <Project Path="AnyDimensionalArrays/4.AnyDimensionalArrays.csproj" Id="2984f57f-d99b-4974-85fb-e9287be1a608" />
