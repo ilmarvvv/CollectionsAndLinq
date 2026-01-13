@@ -7,12 +7,8 @@
   <Folder Name="/Exercises/">
     <Project Path="ExercisesEasy/ExerciseTest.csproj" Id="1802469e-72cd-48ca-8ffe-3d190bd0842e" />
   </Folder>
-  <Folder Name="/Methods/">
-    <Project Path="LINQMethods/LINQMethods.csproj" Id="0761f5e1-c4e6-4022-921c-562527720cd6" />
+  <Folder Name="/LINQ/">
+    <Project Path="IAsyncEnumerableMethods/IAsyncEnumerableMethods.csproj" Id="4f1ed47a-ae9b-4a1d-88a1-3f09f75608c9" />
+    <Project Path="LINQMethods/IEnumerableMethods.csproj" Id="0761f5e1-c4e6-4022-921c-562527720cd6" />
   </Folder>
-  <Project Path="AnyDimensionalArrays/4.AnyDimensionalArrays.csproj" Id="2984f57f-d99b-4974-85fb-e9287be1a608" />
-  <Project Path="JaggedArrays/5.JaggedArrays.csproj" Id="bb185077-9733-460b-9a0c-c03fdb33a26a" />
-  <Project Path="OneDimesionalArrays/1.OneDimensionalArrays.csproj" />
-  <Project Path="ThreeDimensionalArrays/3.ThreeDimensionalArrays.csproj" Id="933e8800-aba3-41b2-80fa-3906f2fe941e" />
-  <Project Path="TwoDimensionalArrays/2.TwoDimensionalArrays.csproj" Id="9e8a4244-b25f-4e26-bcc2-313b03fde4cc" />
 </Solution>
