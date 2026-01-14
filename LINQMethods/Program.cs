@@ -11,6 +11,52 @@ namespace LINQMethods
 
             #region Where(); - filter elements in collection by specified condition;
 
+            // 1. Where(Func<TSource, bool>)
+
+            // Filter even numbers from the collection
+            var numbersForWhere = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var resultForWhere = numbersForWhere.Where(n => n % 2 == 0);
+            // Result: 2, 4, 6, 8, 10
+
+            // Filter words with length greater than 4
+            string[] wordsForWhere = { "apple", "banana", "pear", "plum" };
+            var longWordsForWhere = wordsForWhere.Where(w => w.Length > 4);
+            // Result: "apple", "banana"
+
+            // Filter adults from a collection of people
+            var peopleForWhere = new[]
+            {
+                new People("Ann", 17),
+                new People("Bob", 18),
+                new People("Carl", 30),
+            };
+            var adultsForWhere = peopleForWhere.Where(p => p.Age >= 18);
+            // Result: Bob and Carl
+
+
+            // 2. Where(Func<TSource, int, bool>) - with index
+
+            string[] colorsForWhere = { "red", "green", "blue", "yellow" };
+            var resultTwoForWhere = colorsForWhere.Where((color, index) => index % 2 == 0);
+            // Result: "red", "blue" (elements at index 0 and 2)
+
+
+            // IMPORTANT: Deferred Execution
+            var numbersForDefExe = new List<int> { 1, 2, 3 };
+
+            var queryForDefExe = numbersForDefExe.Where(n => n > 1);
+
+            // Modify the source collection after defining the query
+            numbersForDefExe.Add(10);
+
+            // Now, when we iterate over the query, it reflects the updated collection
+            foreach (var n in queryForDefExe)
+            {
+                Console.WriteLine(n);
+            }
+            // Result: 2, 3, 10
+            // WHY? Because LINQ uses deferred execution and evaluates the query during iteration.
+
             #endregion
 
             #region OfType(); - filter elements by specified type;
@@ -181,7 +227,7 @@ namespace LINQMethods
             var words = new[] { "Apple", "Banana", "Orange" };
             var filter = new[] { "apple", "banana" };
 
-            var resultForIntersectBy = words.IntersectBy(
+            var resultForIntersectBy = wordsForWhere.IntersectBy(
                 filter,
                 w => w, // key selector
                 StringComparer.OrdinalIgnoreCase
@@ -684,7 +730,7 @@ namespace LINQMethods
             IEnumerable<int> numbers = list.Cast<int>();
 
             //int sum1 = list.Sum();      // ❌ doesn't work
-            int sum2 = numbers.Sum();  // ✅ works
+            int sum2 = numbersForDefExe.Sum();  // ✅ works
 
             #endregion
 
@@ -749,6 +795,10 @@ namespace LINQMethods
 
         }
     }
+
+
+
+
     class Pet
     {
         public string Name;
@@ -767,7 +817,6 @@ namespace LINQMethods
         }
 
     }
-
     class Person
     {
         public string Name;
@@ -794,4 +843,6 @@ namespace LINQMethods
     record Order(int CustomerId, string Item);
     record User(string Email);
     record Login(string Email, DateTime At);
+
+    record People(string Name, int Age);
 }
