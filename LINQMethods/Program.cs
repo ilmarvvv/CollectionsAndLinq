@@ -61,6 +61,34 @@ namespace LINQMethods
 
             #region OfType(); - filter elements by specified type;
 
+            // 1. Basic example with mixed collection
+            object[] mixedColForOfType =
+            {
+                1,
+                "hello",
+                2,
+                "world",
+                3.14,
+                42
+            };
+
+            var onlyIntegers = mixedColForOfType.OfType<int>();
+            // Result: 1, 2, 42
+
+            var onlyStrings = mixedColForOfType.OfType<string>();
+            // Result: "hello", "world"
+
+
+            // 2. OfType with inheritance
+            var animals = new Animal[]
+            {
+                new Dog { Name = "Rex" },
+                new Cat { Name = "Misty" }
+            };
+
+            var dogs = animals.OfType<Dog>();
+            // Result: Dog ("Rex")
+
             #endregion
 
             // Projection (Проекція/перетворення)
@@ -796,8 +824,19 @@ namespace LINQMethods
         }
     }
 
+    // Class for demonstration purposes
 
+    #region OfType() with inheritance
 
+    abstract class Animal
+    {
+        public string Name { get; set; }
+    }
+
+    class Dog : Animal { }
+    class Cat : Animal { }
+
+    #endregion
 
     class Pet
     {
