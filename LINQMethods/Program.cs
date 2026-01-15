@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace LINQMethods
 {
@@ -138,7 +139,58 @@ namespace LINQMethods
 
             #endregion
 
-            #region SelectMany(); - project each element of a collection to an IEnumerable<T> and flatten the resulting collections into one collection;
+            #region SelectMany(); - project (transform) each element of a collection to an IEnumerable<T> and flatten the resulting collections into one collection;
+
+            var ordersForSelectMany = new List<OrderForSelectMany>
+            {
+                new OrderForSelectMany { Id = 1, Items = new() { "Apple", "Banana" } },
+                new OrderForSelectMany { Id = 2, Items = new() { "Orange" } },
+                new OrderForSelectMany { Id = 3, Items = new() { "Milk", "Bread" } }
+            };
+
+            // 1) SelectMany(Func<TSource, IEnumerable<TResult>>)
+            var itemsFlat_1 = ordersForSelectMany.SelectMany(o => o.Items);
+            // Result: "Apple", "Banana", "Orange", "Milk", "Bread"
+
+
+            // 2) SelectMany(Func<TSource, int, IEnumerable<TResult>>) - with index
+            var itemsFlat_2 = ordersForSelectMany.SelectMany((o, index) =>
+            {
+                // index is the position of the element in the source sequence
+                return o.Items.Select(item => $"{index}:{item}");
+            });
+            // Result: "0:Apple", "0:Banana", "1:Orange", "2:Milk", "2:Bread"
+
+
+            // 3) SelectMany(collectionSelector, resultSelector)
+            var itemsWithOrderInfo_3 = ordersForSelectMany.SelectMany(
+                o => o.Items,
+                (o, item) => new { OrderId = o.Id, Item = item }
+            );
+            // Result:
+            // { OrderId = 1, Item = "Apple" }
+            // { OrderId = 1, Item = "Banana" }
+            // { OrderId = 2, Item = "Orange" }
+            // { OrderId = 3, Item = "Milk" }
+            // { OrderId = 3, Item = "Bread" }
+
+
+            // 4) SelectMany(collectionSelector with index, resultSelector)
+            var itemsWithOrderInfo_4 = ordersForSelectMany.SelectMany(
+                (o, index) =>
+                {
+                    return o.Items.Select(item => new { index, item });
+                },
+                (o, x) => new { OrderIndex = x.index, OrderId = o.Id, Item = x.item }
+            );
+
+            // Result:
+            // { OrderIndex = 0, OrderId = 1, Item = "Apple" }
+            // { OrderIndex = 0, OrderId = 1, Item = "Banana" }
+            // { OrderIndex = 1, OrderId = 2, Item = "Orange" }
+            // { OrderIndex = 2, OrderId = 3, Item = "Milk" }
+            // { OrderIndex = 2, OrderId = 3, Item = "Bread" }
+
 
             #endregion
 
@@ -940,4 +992,11 @@ namespace LINQMethods
         }
     }
     record People(string Name, int Age);
+
+    class OrderForSelectMany
+    {
+        public int Id { get; set; }
+        public List<string> Items { get; set; }
+    }
+
 }
