@@ -41,7 +41,7 @@ namespace LINQMethods
             // Result: "red", "blue" (elements at index 0 and 2)
 
 
-            // IMPORTANT: Deferred Execution
+            // Deferred Execution:
             var numbersForDefExe = new List<int> { 1, 2, 3 };
 
             var queryForDefExe = numbersForDefExe.Where(n => n > 1);
@@ -93,7 +93,48 @@ namespace LINQMethods
 
             // Projection (Проекція/перетворення)
 
-            #region Select(); - project each element of a collection into a new form;
+            #region Select(); - project (transform) each element into a new form;
+
+            // 1. Select(Func<TSource, TResult>)
+
+            // Transform numbers (square)
+            var numbersForSelect = new[] { 1, 2, 3, 4, 5 };
+            var squaresForSelect = numbersForSelect.Select(n => n * n);
+            // Result: 1, 4, 9, 16, 25
+
+            // Convert strings to uppercase
+            string[] wordsForSelect = { "apple", "banana", "pear" };
+            var upperWordsForSelect = wordsForSelect.Select(w => w.ToUpper());
+            // Result: "APPLE", "BANANA", "PEAR"
+
+            // Select a property from objects
+            var peopleForSelect = new[]
+            {
+                new Person("Ann", 17),
+                new Person("Bob", 18),
+                new Person("Carl", 30),
+            };
+
+            var namesForSelect = peopleForSelect.Select(p => p.Name);
+            // Result: "Ann", "Bob", "Carl"
+            // Before: IEnumerable<Person> a collection of Person objects 
+            // After: IEnumerable<string> a collection of strings 
+
+
+            // 2. Select(Func<TSource, int, TResult>) - with index
+
+            string[] colorsForSelect = { "red", "green", "blue", "yellow" };
+
+            var indexedColorsForSelect = colorsForSelect.Select((color, index) => $"{index}: {color}");
+            // Result: "0: red", "1: green", "2: blue", "3: yellow"
+
+            // 3. Select to anonymous type (very common in LINQ)
+
+            // Projects each Person into a new anonymous object containing only
+            var simplifiedPeopleForSelect = peopleForSelect.Select(p => new { p.Name, IsAdult = p.Age >= 18 });
+            // Result: { Name = "Ann", IsAdult = false }, { Name = "Bob", IsAdult = true }, ...
+
+
 
             #endregion
 
@@ -856,10 +897,7 @@ namespace LINQMethods
         }
 
     }
-    class Person
-    {
-        public string Name;
-    }
+
     class PersonNameComparer : IEqualityComparer<Person>
     {
         public bool Equals(Person a, Person b)
@@ -883,5 +921,23 @@ namespace LINQMethods
     record User(string Email);
     record Login(string Email, DateTime At);
 
+    public class Person
+    {
+        public string? Name { get; set; } = null;
+        public int? Age { get; set; } = null;
+
+        public Person() { }
+
+        public Person(string name)
+        {
+            Name = name;
+        }
+
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+    }
     record People(string Name, int Age);
 }
