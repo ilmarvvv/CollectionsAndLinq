@@ -62,6 +62,9 @@ namespace LINQMethods
 
             #region OfType(); - filter elements by specified type;
 
+            // OfType<TResult>(IEnumerable)
+            // <TResult> is the type to return from the collection
+
             // 1. Basic example with mixed collection
             object[] mixedColForOfType =
             {
