@@ -194,7 +194,51 @@ namespace LINQMethods
 
             #endregion
 
-            #region Zip(); - combine corresponding elements of two collections by combining corresponding elements;
+            #region Zip(); - combines elements from sequences based on their index (position);
+
+
+            var numbersForZip = new[] { 1, 2, 3 };
+            var wordsForZip = new[] { "one", "two", "three" };
+
+            // 1) Zip<TFirst, TSecond, TResult> with result selector
+            var zippedWithSelector = numbersForZip.Zip(
+                wordsForZip,
+                (number, word) => $"{number} = {word}"
+            );
+
+            // Result:
+            // "1 = one"
+            // "2 = two"
+            // "3 = three"
+
+
+            // 2) Zip<TFirst, TSecond> without selector - returns tuples IEnumerable<(int First, string Second)>
+            var zippedTuples = numbersForZip.Zip(wordsForZip);
+            // Result:
+            // (1, "one")
+            // (2, "two")
+            // (3, "three")
+
+
+            // 3) Zip<TFirst, TSecond, TThird> without selector - returns tuples IEnumerable<(int First, string Second, int Third)>
+            var agesForZip = new[] { 17, 25, 30 };
+
+            var zippedThree = numbersForZip.Zip(
+                wordsForZip,
+                agesForZip
+            );
+            // Result:
+            // (1, "one", 17)
+            // (2, "two", 25)
+            // (3, "three", 30)
+
+
+            // Zip stops at the shortest sequence
+            var shortArray = new[] { 10 };
+
+            var zipStopsEarly = numbersForZip.Zip(shortArray);
+            // Result:
+            // (1, 10)
 
             #endregion
 
