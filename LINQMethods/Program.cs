@@ -244,7 +244,15 @@ namespace LINQMethods
 
             #endregion
 
-            #region Index(); - get index of each element in collection;
+            #region Index(); - add index for each elements in collection;
+
+            var items = new[] { "Apple", "Banana", "Orange" };
+
+            var indexed = items.Index();
+            // Return IEnumerable<(int Index, string Item)> valueTuple
+            // (0, "Apple")
+            // (1, "Banana")    
+            // (2, "Orange")
 
             #endregion
 
