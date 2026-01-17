@@ -145,12 +145,13 @@ namespace LINQMethods
             {
                 new OrderForSelectMany { Id = 1, Items = new() { "Apple", "Banana" } },
                 new OrderForSelectMany { Id = 2, Items = new() { "Orange" } },
-                new OrderForSelectMany { Id = 3, Items = new() { "Milk", "Bread" } }
+                new OrderForSelectMany { Id = 3, Items = new() { "Milk", "Bread", "Apple" } }
             };
 
             // 1) SelectMany(Func<TSource, IEnumerable<TResult>>)
+            // Return: IEnumerable<string> with all items from all orders flattened into a single collection
             var itemsFlat_1 = ordersForSelectMany.SelectMany(o => o.Items);
-            // Result: "Apple", "Banana", "Orange", "Milk", "Bread"
+            // Result: "Apple", "Banana", "Orange", "Milk", "Bread", "Apple"
 
 
             // 2) SelectMany(Func<TSource, int, IEnumerable<TResult>>) - with index
@@ -159,7 +160,7 @@ namespace LINQMethods
                 // index is the position of the element in the source sequence
                 return o.Items.Select(item => $"{index}:{item}");
             });
-            // Result: "0:Apple", "0:Banana", "1:Orange", "2:Milk", "2:Bread"
+            // Result: "0:Apple", "0:Banana", "1:Orange", "2:Milk", "2:Bread", "2:Apple"
 
 
             // 3) SelectMany(collectionSelector, resultSelector)
@@ -177,11 +178,11 @@ namespace LINQMethods
 
             // 4) SelectMany(collectionSelector with index, resultSelector)
             var itemsWithOrderInfo_4 = ordersForSelectMany.SelectMany(
-                (o, index) =>
+                (o, index) => // index count automatically like in for loop i
                 {
-                    return o.Items.Select(item => new { index, item });
+                    return o.Items.Select(item => new { index, item }); // return IEnumerable of anonymous type with index and item
                 },
-                (o, x) => new { OrderIndex = x.index, OrderId = o.Id, Item = x.item }
+                (o, x) => new { OrderIndex = x.index, OrderId = o.Id, Item = x.item } // x is the anonymous type from above
             );
 
             // Result:
@@ -190,6 +191,7 @@ namespace LINQMethods
             // { OrderIndex = 1, OrderId = 2, Item = "Orange" }
             // { OrderIndex = 2, OrderId = 3, Item = "Milk" }
             // { OrderIndex = 2, OrderId = 3, Item = "Bread" }
+            // { OrderIndex = 2, OrderId = 3, Item = "Apple" }
 
 
             #endregion
