@@ -291,7 +291,7 @@ namespace LINQMethods
 
             #region OrderBy(); - sort elements in collection in ascending order by specified key, with or without comparer;
 
-            var people = new[]
+            var peopleForOderdBy = new[]
             {
                 new Person { Name = "Bob", Age = 30 },
                 new Person { Name = "Alice", Age = 25 },
@@ -299,7 +299,7 @@ namespace LINQMethods
             };
 
             // 1. OrderBy<TKey>(Func<TSource, TKey>) - sort by key selector
-            var result = people.OrderBy(p => p.Age);
+            var resultForOderdBy = peopleForOderdBy.OrderBy(p => p.Age);
             // Result:
             // (Alice, 25)
             // (Bob, 30)
@@ -307,7 +307,7 @@ namespace LINQMethods
 
 
             // 2. OrderBy<TKey>(Func<TSource, TKey>, IComparer<TKey>) - sort by key selector with custom comparer
-            var resultWithComparer = people.OrderBy(
+            var resultWithComparer = peopleForOderdBy.OrderBy(
                 p => p.Name,
                 StringComparer.OrdinalIgnoreCase // case-insensitive comparer for string
             );
