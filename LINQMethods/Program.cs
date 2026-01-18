@@ -291,6 +291,33 @@ namespace LINQMethods
 
             #region OrderBy(); - sort elements in collection in ascending order by specified key, with or without comparer;
 
+            var people = new[]
+            {
+                new Person { Name = "Bob", Age = 30 },
+                new Person { Name = "Alice", Age = 25 },
+                new Person { Name = "Charlie", Age = 30 }
+            };
+
+            // 1. OrderBy<TKey>(Func<TSource, TKey>) - sort by key selector
+            var result = people.OrderBy(p => p.Age);
+            // Result:
+            // (Alice, 25)
+            // (Bob, 30)
+            // (Charlie, 30)
+
+
+            // 2. OrderBy<TKey>(Func<TSource, TKey>, IComparer<TKey>) - sort by key selector with custom comparer
+            var resultWithComparer = people.OrderBy(
+                p => p.Name,
+                StringComparer.OrdinalIgnoreCase // case-insensitive comparer for string
+            );
+            // Result:
+            // (Alice, 25)
+            // (Bob, 30)
+            // (Charlie, 30)
+
+            // NONE: You also can create your own custom comparer that implements IComparer<TKey> interface
+
             #endregion
 
             #region OrderDescending(); - sort elements in collection in descending order, with or without key selector and comparer;
