@@ -261,15 +261,39 @@ namespace LINQMethods
 
             // Sorting (Сортування)
 
-            #region Order(); - sort elements in collection in ascending order, with or without key selector and comparer;
+            #region Order(); - sort elements in ascending order (e.g. A–Z, 1–9);
 
-            #endregion
+            // 1. Order<T>(IEnumerable<T>)
 
-            #region OrderDescending(); - sort elements in collection in descending order, with or without key selector and comparer;
+            // Sort numbers in ascending order
+            var numbersForOrder = new[] { 5, 1, 3, 2 };
+            var numbersResultForOrder = numbersForOrder.Order();
+            // Result: 1, 2, 3, 5
+
+            // Sort words in ascending order
+            var wordsForOrder = new[] { "banana", "apple", "cherry" };
+            var wordsResultForOrder = wordsForOrder.Order();
+            // Result: apple, banana, cherry
+
+
+            // 2. Order<T>(IEnumerable<T>, IComparer<T>)
+
+            // Sort words in ascending order with custom comparer (case-insensitive)
+            var resultForOrder = wordsForOrder.Order(StringComparer.OrdinalIgnoreCase);
+            // Result: apple, banana, cherry 
+
+            // Or use custom comparer class that implements IComparer<T> interface
+
+            // TODO: Example compare with custom comparer class
+
 
             #endregion
 
             #region OrderBy(); - sort elements in collection in ascending order by specified key, with or without comparer;
+
+            #endregion
+
+            #region OrderDescending(); - sort elements in collection in descending order, with or without key selector and comparer;
 
             #endregion
 
