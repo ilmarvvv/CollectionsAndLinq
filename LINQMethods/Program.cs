@@ -320,7 +320,25 @@ namespace LINQMethods
 
             #endregion
 
-            #region OrderDescending(); - sort elements in collection in descending order, with or without key selector and comparer;
+            #region OrderDescending(); - sort elements in descending order (e.g. Z–A, 9–1)
+
+            // 1. OrderDescending<T>() - sort using default comparison
+
+            var numbersForOrderDes = new[] { 5, 1, 3, 2 };
+            var numbersResultForOrderDes = numbersForOrderDes.OrderDescending();
+            // Result: 5, 3, 2, 1
+
+            var wordsForOrderDes = new[] { "banana", "apple", "cherry" };
+            var wordsResultForOrderDes = wordsForOrderDes.OrderDescending();
+            // Result: cherry, banana, apple
+
+
+            // 2. OrderDescending<T>(IComparer<T>) - sort using custom comparer
+
+            var resultForOrderDes = wordsForOrderDes.OrderDescending(StringComparer.OrdinalIgnoreCase);
+            // Result: cherry, banana, apple
+
+            // TODO: Example with custom IComparer<T>
 
             #endregion
 
