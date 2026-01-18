@@ -342,7 +342,34 @@ namespace LINQMethods
 
             #endregion
 
-            #region OrderByDescending(); - sort elements in collection in descending order by specified key, with or without comparer;
+            #region OrderByDescending(); - sort elements in descending order by specified key (e.g. Z–A, 9–1), with or without comparer
+
+            var peopleForOrderByDes = new[]
+                        {
+                new Person { Name = "Bob", Age = 30 },
+                new Person { Name = "Alice", Age = 25 },
+                new Person { Name = "Charlie", Age = 30 }
+            };
+
+            // 1. OrderByDescending<TSource, TKey>(Func<TSource, TKey>) - sort by key selector (descending)
+            var resultForOrderByDes = peopleForOrderByDes.OrderByDescending(p => p.Age);
+            // Result:
+            // (Bob, 30)
+            // (Charlie, 30)
+            // (Alice, 25)
+
+
+            // 2. OrderByDescending<TSource, TKey>(Func<TSource, TKey>, IComparer<TKey>) - sort by key selector with custom comparer
+            var resultWithComparerForOrderByDes = peopleForOrderByDes.OrderByDescending(
+                p => p.Name,
+                StringComparer.OrdinalIgnoreCase // compare string case-insensitive
+            );
+            // Result:
+            // (Charlie, 30)
+            // (Bob, 30)
+            // (Alice, 25)
+
+            // NOTE: You can also create your own custom comparer that implements IComparer <TKey>
 
             #endregion
 
@@ -362,7 +389,7 @@ namespace LINQMethods
 
             #endregion
 
-            // Partitioning (Порції/пагінація)
+        // Partitioning (Порції/пагінація)
 
             #region Skip(); - skip specified number of elements in collection;
 
@@ -390,8 +417,8 @@ namespace LINQMethods
 
             #region Chunk(); - split collection into smaller collections of specified size;
 
-            // Chunk(int)
-            int[] array = { 1, 2, 3, 4, 5, 6, 7 };
+        // Chunk(int)
+        int[] array = { 1, 2, 3, 4, 5, 6, 7 };
 
 
             var chunks = array.Chunk(3);
@@ -671,7 +698,7 @@ namespace LINQMethods
 
             var people = new[] { new { Name = "Ann", Age = 20 }, new { Name = "Bob", Age = 30 }, new { Name = "Carl", Age = 40 } };
             // This Average with selector for collections of complex types
-            var averageWithSelector = people.Average(p => p.Age); // result is 30.0 because (20 + 30 + 40) / 3 = 30.0
+            var averageWithSelector = peopleForOderdBy.Average(p => p.Age); // result is 30.0 because (20 + 30 + 40) / 3 = 30.0
 
             #endregion 
 
