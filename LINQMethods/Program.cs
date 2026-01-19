@@ -404,7 +404,35 @@ namespace LINQMethods
 
             #endregion
 
-            #region ThenByDescending(); - perform a subsequent ordering of elements in collection in descending order by specified key, with or without comparer;
+            #region ThenByDescending(); - secondary sort in descending order for elements with equal keys from OrderBy;
+
+            var peopleForThenByDesc = new[]
+            {
+                new Person { Name = "Bob", Age = 30 },
+                new Person { Name = "Charlie", Age = 30 },
+                new Person { Name = "Alice", Age = 25 }
+            };
+
+            // 1. ThenByDescending<TSource, TKey>(Func<TSource, TKey>) - secondary sort descending
+            var resultForThenByDesc = peopleForThenByDesc
+                .OrderBy(p => p.Age)
+                .ThenByDescending(p => p.Name);
+            // Result:
+            // (Alice, 25)
+            // (Charlie, 30)
+            // (Bob, 30)
+
+
+            // 2. ThenByDescending<TSource, TKey>(Func<TSource, TKey>, IComparer<TKey>) - secondary sort descending with custom comparer
+            var resultWithComparerForThenByDesc = peopleForThenByDesc
+                .OrderBy(p => p.Age)
+                .ThenByDescending(p => p.Name, StringComparer.OrdinalIgnoreCase);
+            // Result:
+            // (Alice, 25)
+            // (Charlie, 30)
+            // (Bob, 30)
+
+            // NOTE: You can also create your own custom comparer that implements IComparer<TKey>
 
             #endregion
 
