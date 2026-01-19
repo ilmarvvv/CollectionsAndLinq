@@ -436,7 +436,20 @@ namespace LINQMethods
 
             #endregion
 
-            #region Reverse(); - reverse the order of elements in collection;
+            #region Reverse(); - reverse the order of elements in a sequence (without sorting)
+
+            // 1. Reverse<T>()
+
+            // Reverse numbers
+            var numbersForReverse = new[] { 1, 2, 3, 4 };
+            var resultForReverse = numbersForReverse.Reverse();
+            // Result: 4, 3, 2, 1
+
+            // Reverse words
+            var wordsForReverse = new[] { "apple", "banana", "cherry" };
+            var wordsResultForReverse = wordsForReverse.Reverse();
+            // Result: cherry, banana, apple
+
 
             #endregion
 
