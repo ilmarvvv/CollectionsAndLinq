@@ -373,7 +373,34 @@ namespace LINQMethods
 
             #endregion
 
-            #region ThenBy(); - perform a subsequent ordering of elements in collection in ascending order by specified key, with or without comparer;
+            #region ThenBy(); - secondary sort for elements with equal keys from OrderBy();
+
+            var peopleForThenBy = new[]
+            {
+                new Person { Name = "Bob", Age = 30 },
+                new Person { Name = "Charlie", Age = 30 },
+                new Person { Name = "Alice", Age = 25 }
+            };
+
+            // 1. ThenBy<TSource, TKey>(Func<TSource, TKey>) - secondary sort ascending
+            var resultForThenBy = peopleForThenBy
+                .OrderBy(p => p.Age)
+                .ThenBy(p => p.Name);
+            // Result:
+            // (Alice, 25)
+            // (Bob, 30)
+            // (Charlie, 30)
+
+            // 2. ThenBy<TSource, TKey>(Func<TSource, TKey>, IComparer<TKey>) - secondary sort ascending with custom comparer
+            var resultWithComparerForThenBy = peopleForThenBy
+                .OrderBy(p => p.Age)
+                .ThenBy(p => p.Name, StringComparer.OrdinalIgnoreCase);
+            // Result:
+            // (Alice, 25)
+            // (Bob, 30)
+            // (Charlie, 30)
+
+            // NOTE: You can also create your own custom comparer that implements IComparer<TKey>
 
             #endregion
 
@@ -389,7 +416,7 @@ namespace LINQMethods
 
             #endregion
 
-        // Partitioning (Порції/пагінація)
+            // Partitioning (Порції/пагінація)
 
             #region Skip(); - skip specified number of elements in collection;
 
@@ -417,8 +444,8 @@ namespace LINQMethods
 
             #region Chunk(); - split collection into smaller collections of specified size;
 
-        // Chunk(int)
-        int[] array = { 1, 2, 3, 4, 5, 6, 7 };
+            // Chunk(int)
+            int[] array = { 1, 2, 3, 4, 5, 6, 7 };
 
 
             var chunks = array.Chunk(3);
