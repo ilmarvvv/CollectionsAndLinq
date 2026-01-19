@@ -455,6 +455,11 @@ namespace LINQMethods
 
             #region Shuffle(); - randomly shuffle elements in collection;
 
+            var numbersForShuffle = new[] { 1, 2, 3, 4, 5 };
+            var resultForShuffle = numbersForShuffle.Shuffle();
+            // Result: 3, 1, 4, 5, 2 (randomized)
+
+
             #endregion
 
             // Partitioning (Порції/пагінація)
