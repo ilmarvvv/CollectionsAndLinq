@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LINQMethods
 {
@@ -464,7 +465,26 @@ namespace LINQMethods
 
             // Partitioning (Порції/пагінація)
 
-            #region Skip(); - skip specified number of elements in collection;
+            #region Skip(); - skip a specified number of elements from the start of a sequence
+
+            // 1. Skip<TSource>(IEnumerable<TSource>, int)
+            var numbersForSkip = new[] { 1, 2, 3, 4, 5 };
+            var resultForSkip = numbersForSkip.Skip(2);
+            // Result: 3, 4, 5
+
+            // Real-world example
+
+            int page = 2; // current page number
+            int pageSize = 5; // number of items per page
+
+            var data = new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K" };
+
+            var pageItems = data
+                .Skip((page - 1) * pageSize) // skip all items from previous pages
+                .Take(pageSize);
+            // Page 1: Skip(0) -> "A", "B", "C", "D", "E"
+            // Page 2: Skip(5) -> "F", "G", "H", "I", "J"
+            // Page 3: Skip(10) -> "K"
 
             #endregion
 
