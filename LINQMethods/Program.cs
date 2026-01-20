@@ -499,7 +499,20 @@ namespace LINQMethods
 
             #endregion
 
-            #region SkipWhile(); - skip elements in collection while condition is true;
+            #region SkipWhile(); - skip elements in collection while condition is true
+
+            var numbersForSkipWhile = new[] { 1, 2, 3, 4, 1, 2 };
+
+            // 1. SkipWhile(Func<TSource, bool>) - skip while condition is true
+            var resultForSkipWhile = numbersForSkipWhile.SkipWhile(n => n < 4);
+            // Result: 4, 1, 2
+
+
+            // 2. SkipWhile(Func<TSource, int, bool>) - with index
+            var numbersForSkipWhileWithIndex = new[] { 1, 2, 3, 4, 5, 6 };
+            var resultWithIndexForSkipWhile = numbersForSkipWhileWithIndex
+                .SkipWhile((value, index) => value < 4 && index < 3);
+            // Result: 4, 5, 6
 
             #endregion
 
