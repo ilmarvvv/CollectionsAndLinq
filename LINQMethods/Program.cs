@@ -542,7 +542,20 @@ namespace LINQMethods
 
             #endregion
 
-            #region TakeWhile(); - take elements from collection while condition is true;
+            #region TakeWhile(); - take elements from collection while condition is true
+
+            var numbersForTakeWhile = new[] { 1, 2, 3, 4, 5, 6 };
+
+            // 1. TakeWhile(Func<TSource, bool>) - take while condition is true
+            var resultForTakeWhile = numbersForTakeWhile.TakeWhile(n => n < 4);
+            // Result: 1, 2, 3
+
+
+            // 2. TakeWhile(Func<TSource, int, bool>) - with index
+            var numbersForTakeWhileWithIndex = new[] { 1, 2, 3, 10, 4, 5 };
+            var resultWithIndexForTakeWhile = numbersForTakeWhileWithIndex
+                .TakeWhile((value, index) => value < 5 && index < 3); // take while value < 5 and index < 3
+            // Result: 1, 2, 3
 
             #endregion
 
