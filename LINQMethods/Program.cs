@@ -560,11 +560,10 @@ namespace LINQMethods
             #endregion
 
             #region Chunk(); - split collection into smaller collections of specified size;
-
-            // Chunk(int)
+            
             int[] array = { 1, 2, 3, 4, 5, 6, 7 };
 
-
+            // Chunk(int) - split array into chunks of specified size
             var chunks = array.Chunk(3);
             // Chunk() contain:
             // chunks[0] -> [1, 2, 3]
