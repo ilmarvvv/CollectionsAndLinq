@@ -527,9 +527,9 @@ namespace LINQMethods
 
             // 2. Take(Range) - take elements by range (.NET 6+)
             var resultForTakeByRange = numbersForTake.Take(1..4);    // Result: 2, 3, 4 (elements from index 1 to index 3 inclusive)
-                                                                     // var resultForTakeByRange = numbersForTake.Take(..3);  // Result: 1, 2, 3 (elements from start to index 2)
-                                                                     // var resultForTakeByRange = numbersForTake.Take(3..);  // Result: 4, 5, 6 (elements from index 3 to end)
-                                                                     // var resultForTakeByRange = numbersForTake.Take(^3..); // Result: 4, 5, 6 (elements from index -3 to end)
+            // var resultForTakeByRange = numbersForTake.Take(..3);  // Result: 1, 2, 3 (elements from start to index 2)
+            // var resultForTakeByRange = numbersForTake.Take(3..);  // Result: 4, 5, 6 (elements from index 3 to end)
+            // var resultForTakeByRange = numbersForTake.Take(^3..); // Result: 4, 5, 6 (elements from index -3 to end)
 
             #endregion
 
