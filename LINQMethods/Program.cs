@@ -488,7 +488,14 @@ namespace LINQMethods
 
             #endregion
 
-            #region SkipLast(); - skip specified number of elements from the end of collection;
+            #region SkipLast(); - skip a specified number of elements from the end of a sequence
+
+            // 1. SkipLast<TSource>(IEnumerable<TSource>, int)
+            var numbersForSkipLast = new[] { 1, 2, 3, 4, 5 };
+            var resultForSkipLast = numbersForSkipLast.SkipLast(2);
+            // Result: 1, 2, 3
+
+            // SkipLast method is useful when you want to exclude a certain number of elements from the end of a collection
 
             #endregion
 
