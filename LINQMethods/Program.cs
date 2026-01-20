@@ -516,7 +516,20 @@ namespace LINQMethods
 
             #endregion
 
-            #region Take(); - take specified number of elements from collection;
+            #region Take(); - take elements from the start of a sequence or by range
+
+            var numbersForTake = new[] { 1, 2, 3, 4, 5, 6 };
+
+            // 1. Take(int count) - take first N elements
+            var resultForTake = numbersForTake.Take(3);
+            // Result: 1, 2, 3
+
+
+            // 2. Take(Range) - take elements by range (.NET 6+)
+            var resultForTakeByRange = numbersForTake.Take(1..4);    // Result: 2, 3, 4 (elements from index 1 to index 3 inclusive)
+            // var resultForTakeByRange = numbersForTake.Take(..3);  // Result: 1, 2, 3 (elements from start to index 2)
+            // var resultForTakeByRange = numbersForTake.Take(3..);  // Result: 4, 5, 6 (elements from index 3 to end)
+            // var resultForTakeByRange = numbersForTake.Take(^3..); // Result: 4, 5, 6 (elements from index -3 to end)
 
             #endregion
 
