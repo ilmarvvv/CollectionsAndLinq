@@ -600,11 +600,34 @@ namespace LINQMethods
 
             #endregion
 
-            #region DistinctBy(); - remove duplicate elements from collection by specified key;
+            #region DistinctBy(); - remove duplicate elements from a sequence by key (.NET 6+)
 
-            var distinctByName = peopleWithDuplicates.DistinctBy(p => p.Name); // contains only two unique "Alice" and "Bob"
+            var peopleForDistinctBy = new[]
+            {
+                new Person { Name = "Alice", Age = 25 },
+                new Person { Name = "Bob", Age = 30 },
+                new Person { Name = "Alice", Age = 40 },
+                new Person { Name = "Charlie", Age = 30 },
+                new Person { Name = "bob", Age = 30 }
+            };
 
-            // TODO: Add example for DistinctBy(x=> key, comparer) with custom comparer
+            // 1. DistinctBy(Func<TSource, TKey>) - remove duplicates by key selector
+            var resultForDistinctBy = peopleForDistinctBy.DistinctBy(p => p.Name);
+            // Result:
+            // (Alice, 25)
+            // (Bob, 30)
+            // (Charlie, 30)
+            // (bob, 30)
+
+
+            // 2. DistinctBy(Func<TSource, TKey>, IEqualityComparer<TKey>) - remove duplicates by key with custom comparer
+            var resultWithComparerForDistinctBy = peopleForDistinctBy
+                .DistinctBy(p => p.Name, StringComparer.OrdinalIgnoreCase);
+            // Result:
+            // (Alice, 25)
+            // (Bob, 30)
+            // (Charlie, 30)
+            // "bob" is considered duplicate of "Bob" due to case-insensitive comparison
 
             #endregion
 
