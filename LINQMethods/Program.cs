@@ -766,21 +766,34 @@ namespace LINQMethods
 
             #endregion
 
-            #region ExceptBy(); - get elements from first collection that are not in second collection by specified key;
+            #region ExceptBy(); - produce the set difference of a sequence by key (.NET 6+)
+            // What is in first collection but not in second (by key)
 
-            var peopleExcept = new[]
-               {
-                    new Pet("Ann", 3),
-                    new Pet("Ann", 2),
-                    new Pet("Bob", 3),
-                    new Pet("Carl", 4)
-                };
+            var peopleForExceptBy = new[]
+            {
+                new Person { Name = "Alice", Age = 25 },
+                new Person { Name = "Bob", Age = 30 },
+                new Person { Name = "Charlie", Age = 35 }
+            };
 
-            var blockedNames = new[] { "Bob" }; // names to block
+            var blockedNames = new[] { "Bob", "Eve" };
 
-            var exceptByResult = peopleExcept.ExceptBy(blockedNames, p => p.Name); // contains only Pets with names "Ann" and "Carl", "Bob" is excluded
 
-            // TODO: Add example for ExceptBy(keys, x => key, comparer) with custom comparer
+            // 1. ExceptBy(IEnumerable<TKey>, Func<TSource, TKey>) - return elements from first sequence whose keys are not in second
+            var resultForExceptBy = peopleForExceptBy.ExceptBy(blockedNames, p => p.Name);
+            // Result:
+            // (Alice, 25)
+            // (Charlie, 35)
+            // Note: "Eve" is ignored because ExceptBy only returns elements from the first sequence
+
+
+            // 2. ExceptBy(IEnumerable<TKey>, Func<TSource, TKey>, IEqualityComparer<TKey>) - return difference by key using custom comparer
+            var wordsFirstForExceptBy = new[] { "Apple", "Banana", "Orange" };
+            var wordsSecondForExceptBy = new[] { "apple", "KIWI" };
+
+            var resultWithComparerForExceptBy = wordsFirstForExceptBy
+                .ExceptBy(wordsSecondForExceptBy, w => w, StringComparer.OrdinalIgnoreCase);
+            // Result: "Banana", "Orange"
 
             #endregion
 
