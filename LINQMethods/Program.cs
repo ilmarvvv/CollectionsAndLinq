@@ -711,6 +711,7 @@ namespace LINQMethods
             #endregion
 
             #region IntersectBy(); - get common elements from two collections by specified key;
+
             // 1. IntersectBy(IEnumerable<TKey>, Func<TSource, TKey>) - by key selector
             var usersForIntersect = new[]
             {
@@ -721,7 +722,11 @@ namespace LINQMethods
 
             var ids = new[] { 2, 3 };
 
-            var resultIntersectBy = usersForIntersect.IntersectBy(ids, u => u.Id); // contains only users with Id 2 and 3 (Bob and Carl)
+            var resultIntersectBy = usersForIntersect.IntersectBy(ids, u => u.Id);
+            // Result:
+            // { Id = 2, Name = "Bob" }
+            // { Id = 3, Name = "Carl" }
+
 
             // 2. IntersectBy(IEnumerable<TKey>, Func<TSource, TKey>, IEqualityComparer<TKey>) - by key selector with custom comparer
 
@@ -733,8 +738,9 @@ namespace LINQMethods
                 w => w, // key selector
                 StringComparer.OrdinalIgnoreCase
             );
+            // Result: "Apple", "Banana"
 
-
+            // NOTE: You can also create your own custom comparer that implements IEqualityComparer<TKey> interface
 
             #endregion
 
