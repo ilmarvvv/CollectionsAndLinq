@@ -688,16 +688,25 @@ namespace LINQMethods
 
             #endregion
 
-            #region Intersect(); - get common elements from two collections;
+            #region Intersect(); - produce the set intersection of two sequences and remove duplicates
 
-            // 1. Intersect(IEnumerable<TSource>)
-            var arrayForIntersect1 = new int[] { 1, 2, 3, 4 };
-            var arrayForIntersect2 = new int[] { 3, 4, 5, 6 };
+            var firstForIntersect = new[] { 1, 2, 3, 4, 5 };
+            var secondForIntersect = new[] { 3, 4, 5, 6, 7 };
 
-            var intersect = arrayForIntersect1.Intersect(arrayForIntersect2); // {3, 4} because 3 and 4 are common in both arrays
+            // 1. Intersect(IEnumerable<TSource>) - return common elements using default comparer
+            var resultForIntersect = firstForIntersect.Intersect(secondForIntersect);
+            // Result: 3, 4, 5
 
-            // 2. Intersect(IEnumerable<TSource>, IEqualityComparer<TSource>) - with custom comparer for complex types
-            // TODO: Add examples for Intersect() with custom comparer for complex types
+
+            // 2. Intersect(IEnumerable<TSource>, IEqualityComparer<TSource>) - return common elements using custom comparer
+            var wordsFirstForIntersect = new[] { "Apple", "Banana", "Orange" };
+            var wordsSecondForIntersect = new[] { "apple", "KIWI", "orange" };
+
+            var resultWithComparerForIntersect = wordsFirstForIntersect
+                .Intersect(wordsSecondForIntersect, StringComparer.OrdinalIgnoreCase);
+            // Result: "Apple", "Orange"
+
+            // NOTE: You can also create your own custom comparer that implements IEqualityComparer<T> interface
 
             #endregion
 
