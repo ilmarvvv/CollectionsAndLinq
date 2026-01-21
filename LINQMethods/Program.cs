@@ -581,19 +581,22 @@ namespace LINQMethods
 
             // Set operations (Множини)
 
-            #region Distinct(); - remove duplicate elements from collection;
+            #region Distinct(); - remove duplicate elements from a sequence
 
-            var distinct = new int[] { 1, 2, 2, 3, 4, 4, 4, 5 }.Distinct(); // {1, 2, 3, 4, 5}
+            var numbersForDistinct = new[] { 1, 2, 2, 3, 4, 4, 5 };
 
-            // also can delete duplicates in complex types with custom comparer as Contains() method above
-            var peopleWithDuplicates = new List<Person>
-            {
-                new Person { Name = "Alice" },
-                new Person { Name = "Bob" },
-                new Person { Name = "Alice" } // duplicate
-            };
+            // 1. Distinct() - remove duplicates using default equality comparer
+            var resultForDistinct = numbersForDistinct.Distinct();
+            // Result: 1, 2, 3, 4, 5
 
-            var distinctPeople = peopleWithDuplicates.Distinct(new PersonNameComparer()); // contains only two unique "Alice" and "Bob"
+
+            // 2. Distinct(IEqualityComparer<T>) - remove duplicates using custom comparer
+            var wordsForDistinct = new[] { "Apple", "apple", "Banana", "BANANA" };
+
+            var resultWithComparerForDistinct = wordsForDistinct.Distinct(StringComparer.OrdinalIgnoreCase);
+            // Result: "Apple", "Banana"
+
+            // NOTE: You can also create your own custom comparer that implements IEqualityComparer<T> interface
 
             #endregion
 
