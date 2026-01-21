@@ -744,16 +744,25 @@ namespace LINQMethods
 
             #endregion
 
-            #region Except(); - get elements from first collection that are not in second collection;
+            #region Except(); - produce the set difference of two sequences and remove duplicates
+            // What is in the first collection but not in the second
 
-            // compare first array with second and return only those elements that are in the first array but not in the second array
-            // all result is unique
-            int[] arrayForExcept1 = { 1, 1, 2, 3, 4 };
-            int[] arrayForExcept2 = { 3, 4 }; // array that blocks elements from first array
+            var firstForExcept = new[] { 1, 2, 3, 4, 5 };
+            var secondForExcept = new[] { 3, 4, 6 };
 
-            var result = arrayForExcept1.Except(arrayForExcept2); // {1, 2} because 1 and 2 are not in arrayForExcept2 in simple words : result = arrayForExcept1 - arrayForExcept2
+            // 1. Except(IEnumerable<TSource>) - return elements from first sequence that are not in second
+            var resultForExcept = firstForExcept.Except(secondForExcept);
+            // Result: 1, 2, 5
+            // Number 6 is ignored because Except only returns elements from the first sequence that are not in the second
 
-            // TODO: Add example for Except() with custom comparer for complex types
+
+            // 2. Except(IEnumerable<TSource>, IEqualityComparer<TSource>) - return difference using custom comparer
+            var wordsFirstForExcept = new[] { "Apple", "Banana", "Orange" };
+            var wordsSecondForExcept = new[] { "apple", "KIWI" };
+
+            var resultWithComparerForExcept = wordsFirstForExcept
+                .Except(wordsSecondForExcept, StringComparer.OrdinalIgnoreCase);
+            // Result: "Banana", "Orange"
 
             #endregion
 
