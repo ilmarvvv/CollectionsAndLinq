@@ -632,7 +632,25 @@ namespace LINQMethods
 
             #endregion
 
-            #region Union(); - get unique elements from two collections;
+            #region Union(); - produce the set union of two sequences and remove duplicates;
+
+            var firstForUnion = new[] { 1, 2, 3, 4 };
+            var secondForUnion = new[] { 3, 4, 5, 6 };
+
+            // 1. Union(IEnumerable<TSource>) - combine two sequences and remove duplicates using default comparer
+            var resultForUnion = firstForUnion.Union(secondForUnion);
+            // Result: 1, 2, 3, 4, 5, 6
+
+
+            // 2. Union(IEnumerable<TSource>, IEqualityComparer<TSource>) - combine sequences using custom comparer
+            var wordsFirstForUnion = new[] { "Apple", "Banana" };
+            var wordsSecondForUnion = new[] { "apple", "Orange" };
+
+            var resultWithComparerForUnion = wordsFirstForUnion
+                .Union(wordsSecondForUnion, StringComparer.OrdinalIgnoreCase);
+            // Result: "Apple", "Banana", "Orange"
+
+            // NOTE: You can also create your own custom comparer that implements IEqualityComparer<T> interface
 
             #endregion
 
