@@ -654,7 +654,37 @@ namespace LINQMethods
 
             #endregion
 
-            #region UnionBy(); - get unique elements from two collections by specified key;
+            #region UnionBy(); - produce the set union of two sequences by key and remove duplicates (.NET 6+)
+
+            var firstForUnionBy = new[]
+            {
+                new Person { Name = "Alice", Age = 25 },
+                new Person { Name = "Bob", Age = 30 }
+            };
+
+            var secondForUnionBy = new[]
+            {
+                new Person { Name = "Alice", Age = 40 },   // duplicate by Name
+                new Person { Name = "Charlie", Age = 35 }
+            };
+
+            // 1. UnionBy(IEnumerable<TSource>, Func<TSource, TKey>) - combine sequences and remove duplicates by key
+            var resultForUnionBy = firstForUnionBy.UnionBy(secondForUnionBy, p => p.Name);
+            // Result:
+            // (Alice, 25)
+            // (Bob, 30)
+            // (Charlie, 35)
+
+
+            // 2. UnionBy(IEnumerable<TSource>, Func<TSource, TKey>, IEqualityComparer<TKey>) - combine by key with custom comparer
+            var wordsFirstForUnionBy = new[] { "Apple", "Banana" };
+            var wordsSecondForUnionBy = new[] { "apple", "Orange" };
+
+            var resultWithComparerForUnionBy = wordsFirstForUnionBy
+                .UnionBy(wordsSecondForUnionBy, w => w, StringComparer.OrdinalIgnoreCase);
+            // Result: "Apple", "Banana", "Orange"
+
+            // NOTE: You can also create your own custom comparer that implements IEqualityComparer<TKey> interface
 
             #endregion
 
