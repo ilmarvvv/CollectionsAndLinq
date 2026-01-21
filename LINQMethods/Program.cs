@@ -8,6 +8,7 @@ namespace LINQMethods
     {
         static void Main(string[] args)
         {
+            // TODO: add .NET version information to the region description available since (.NET 6+)
 
             // Filtering (Фільтрація)
 
