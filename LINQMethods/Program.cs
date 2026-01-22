@@ -799,16 +799,30 @@ namespace LINQMethods
 
             // Element operations (Вибір елемента)
 
-            #region First(); - get first element from collection, with or without condition;
+            #region First(); - return the first element of a sequence, with or without a condition
+            // Get the first element from a sequence or the first element that satisfies a condition
 
-            int[] firstArray = { 1, 3, 4, 6 };
+            var numbersForFirst = new[] { 1, 3, 4, 6 };
 
-            int first = firstArray.First();   // 1
 
-            // overload with condition
-            int firstEven = firstArray.First(x => x % 2 == 0); // 4 because 4 is the first even number in the array that satisfies the condition
+            // 1. First<TSource>() - return the first element of the sequence
+            var firstForFirst = numbersForFirst.First();
+            // Result: 1
 
-            // NOTICE: If the collection is empty or no elements satisfy the condition, First() will throw an InvalidOperationException.
+
+            // 2. First<TSource>(Func<TSource, bool>) - return the first element that satisfies the condition
+            var firstEvenForFirst = numbersForFirst.First(x => x % 2 == 0);
+            // Result: 4 (because 4 is the first even number that satisfies the condition)
+
+
+            // 3. Example with empty sequence, that causes First() to throw an exception
+            var emptyForFirst = Array.Empty<int>();
+
+            // var valueForFirst = emptyForFirst.First();
+            // Result: throws InvalidOperationException
+
+
+            // NOTICE: If the sequence is empty or no elements satisfy the condition, First() throws an InvalidOperationException.
 
             #endregion
 
