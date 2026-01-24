@@ -828,21 +828,32 @@ namespace LINQMethods
 
             #region FirstOrDefault(); - get first element from collection or default value if collection is empty, with or without condition;
 
-            int[] firstOrDefaultArray = { 1, 3, 4, 6 };
+            int[] numbersForFirstOrDefault = { 1, 3, 4, 6 };
 
-            int firstOrDefault = firstOrDefaultArray.FirstOrDefault();   // 1
+            // 1. FirstOrDefault<TSource>() - return the first element of the sequence or default(T) if the sequence is empty
+            var firstForFirstOrDefault = numbersForFirstOrDefault.FirstOrDefault();
+            // Result: 1
 
-            // overload with default value
-            int firstOrDefaultWithDefault = new int[] { }.FirstOrDefault(999);   // 999
 
-            // if collection is empty return default value
-            int firstOrDefaultEmpty = new int[] { }.FirstOrDefault(); // 0 because the array is empty and default value for int is 0
+            // 2. FirstOrDefault<TSource>(Func<TSource, bool>) - return the first element that satisfies the condition or default(T)
+            var firstEvenForFirstOrDefault = numbersForFirstOrDefault.FirstOrDefault(x => x % 2 == 0);
+            // Result: 4 (because 4 is the first even number that satisfies the condition)
 
-            // overload with condition
-            int firstOrDefaultWithCondition = firstOrDefaultArray.FirstOrDefault(x => x % 2 == 0); // 4 because 4 is the first even number in the array that satisfies the condition
 
-            // 999 because no elements satisfy the condition and we provided a default value of 999
-            int firstOrDefaultWithConditionAndDefault = firstOrDefaultArray.FirstOrDefault(x => x > 10, 999);
+            // Example 1: If collection is empty return default value
+            int firstOrDefaultEmpty = new int[] { }.FirstOrDefault();
+            // Result: 0 because default for int is 0
+
+
+            // Example 2: Overloads with default value
+            int firstOrDefaultWithDefault = new int[] { }.FirstOrDefault(999);
+            // Result: 999 (because this is your custom default value)
+            // You can provide your own default value instead of default(T)
+
+
+            // Example 3: FirstOrDefault with condition and custom default value
+            int firstOrDefaultWithConditionAndDefault = numbersForFirstOrDefault.FirstOrDefault(x => x > 10, 999);
+            // Result: 999 (because no elements satisfy the condition and we provided a default value of 999)
 
             #endregion
 
