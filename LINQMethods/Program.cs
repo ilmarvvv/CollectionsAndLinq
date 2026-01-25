@@ -859,6 +859,29 @@ namespace LINQMethods
 
             #region Last(); - get last element from collection, with or without condition;
 
+            int[] numbersForLast = { 1, 3, 4, 6 };
+
+
+            // 1. Last<TSource>() - return the last element of the sequence
+            var lastForLast = numbersForLast.Last();
+            // Result: 6
+
+
+            // 2. Last<TSource>(Func<TSource, bool>) - return the last element that satisfies the condition
+            var lastEvenForLast = numbersForLast.Last(x => x % 2 == 0);
+            // Result: 6 (because 6 is the last even number that satisfies the condition)
+
+
+            // 3. Example with an empty sequence that causes Last() to throw an exception
+            var emptyForLast = Array.Empty<int>();
+            // var valueForLast = emptyForLast.Last();
+            // Result: throws InvalidOperationException
+
+            // NOTICE: If the sequence is empty or no elements satisfy the condition, Last() throws an InvalidOperationException.
+
+            // NOTICE: Last() needs to iterate through the entire collection to find the last element,
+            // which may have performance implications for large collections.
+
             #endregion
 
             #region LastOrDefault(); - get last element from collection or default value if collection is empty, with or without condition;
