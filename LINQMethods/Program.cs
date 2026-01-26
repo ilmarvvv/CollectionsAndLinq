@@ -884,7 +884,38 @@ namespace LINQMethods
 
             #endregion
 
-            #region LastOrDefault(); - get last element from collection or default value if collection is empty, with or without condition;
+            #region LastOrDefault(); - get last element from sequence or default value if sequence is empty, with or without condition;
+
+            int[] numbersForLastOrDefault = { 1, 3, 4, 6 };
+
+            // 1. LastOrDefault<TSource>() - return the last element of the sequence or default(T) if the sequence is empty
+            var lastForLastOrDefault = numbersForLastOrDefault.LastOrDefault();
+            // Result: 6
+
+
+            // 2. LastOrDefault<TSource>(TSource defaultValue) - return the last element or the provided default value if the sequence is empty
+            int lastOrDefaultWithDefaultForLastOrDefault = Array.Empty<int>().LastOrDefault(999);
+            // Result: 999 (custom default value)
+
+
+            // 3. LastOrDefault<TSource>(Func<TSource, bool>) - return the last element that satisfies the condition or default(T)
+            var lastEvenForLastOrDefault = numbersForLastOrDefault.LastOrDefault(x => x % 2 == 0);
+            // Result: 6 (because 4 and 6 are even, and 6 is the last even number)
+
+
+            // 4. LastOrDefault<TSource>(Func<TSource, bool>, TSource defaultValue) - return the last element that
+            // satisfies the condition or the provided default value
+            int lastOrDefaultWithConditionAndDefaultForLastOrDefault = numbersForLastOrDefault.LastOrDefault(x => x > 10, 999);
+            // Result: 999 (no elements satisfy the condition, custom default value is returned)
+
+
+            // 5. Example with empty sequence (returns default(T))
+            int lastOrDefaultEmptyForLastOrDefault = Array.Empty<int>().LastOrDefault();
+            // Result: 0 because default for int is 0
+
+
+            // NOTICE: LastOrDefault() does NOT throw an exception.
+            // It returns default(T) or the provided default value if no element is found.
 
             #endregion
 
