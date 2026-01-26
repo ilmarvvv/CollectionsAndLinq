@@ -1015,6 +1015,11 @@ namespace LINQMethods
             // Result: throws ArgumentOutOfRangeException
 
 
+            // 2. ElementAt<TSource>(Index index) - return the element at the specified index (supports from end index)
+            var lastElementForElementAt = numbersForElementAt.ElementAt(^1);
+            // Result: 40 (last element, index from the end)
+
+
             // NOTICE: ElementAt() throws ArgumentOutOfRangeException if the index is less than 0
             // or greater than or equal to the number of elements in the sequence.
 
