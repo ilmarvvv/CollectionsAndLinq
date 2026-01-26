@@ -1022,7 +1022,30 @@ namespace LINQMethods
 
             #region ElementAtOrDefault(); - get element at specified index or default value if index is out of range;
 
-            var elementAtIndexWithDefault = new int[] { }.ElementAtOrDefault(0); // 0
+            int[] numbersForElementAtOrDefault = { 10, 20, 30, 40 };
+
+            // 1. ElementAtOrDefault<TSource>(int index) - return the element at the specified index or default(T) if the index is out of range
+            var elementAtIndexForElementAtOrDefault = numbersForElementAtOrDefault.ElementAtOrDefault(2);
+            // Result: 30 (because it's the element at index 2)
+
+
+            // Example 1: index is out of range (returns default(T))
+            var outOfRangeForElementAtOrDefault = numbersForElementAtOrDefault.ElementAtOrDefault(10);
+            // Result: 0 (because default for int is 0)
+
+
+            // Example 2: reference types return null by default
+            string[] wordsForElementAtOrDefault = { "Apple", "Banana" };
+            var outOfRangeWordForElementAtOrDefault = wordsForElementAtOrDefault.ElementAtOrDefault(5);
+            // Result: null
+
+
+            // 2. ElementAtOrDefault<TSource>(Index index) - return the element at the specified index or default(T) if the index is out of range
+            var lastElementForElementAtOrDefault = numbersForElementAt.ElementAtOrDefault(^1);
+            // Result: 40 (last element, index from the end)
+
+            // NOTICE: ElementAtOrDefault() does NOT throw an exception when the index is out of range.
+            // It returns default(T) instead (0 for int, null for reference types, etc.).
 
             #endregion
 
