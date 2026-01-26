@@ -953,6 +953,46 @@ namespace LINQMethods
 
             #region SingleOrDefault(); - get single element from collection or default value if collection is empty, with or without condition;
 
+            // 1. SingleOrDefault<TSource>() - return the only element of the sequence or default(T) if the sequence is empty
+            int[] singleItemForSingleOrDefault = { 42 };
+            var singleForSingleOrDefault = singleItemForSingleOrDefault.SingleOrDefault();
+            // Result: 42
+
+
+            // Example 1: sequence is empty (returns default(T))
+            var emptyForSingleOrDefault = Array.Empty<int>();
+            var valueEmptyForSingleOrDefault = emptyForSingleOrDefault.SingleOrDefault();
+            // Result: 0 (because default for int is 0)
+
+
+            // Example 2: sequence has more than one element (throws)
+            int[] multipleItemsForSingleOrDefault = { 10, 20 };
+            // var valueMultipleForSingleOrDefault = multipleItemsForSingleOrDefault.SingleOrDefault();
+            // Result: throws InvalidOperationException
+
+
+            // 2. SingleOrDefault<TSource>(TSource defaultValue) - return the only element or the provided default value if the sequence is empty
+            int singleOrDefaultWithDefaultForSingleOrDefault = Array.Empty<int>().SingleOrDefault(999);
+            // Result: 999 (custom default value)
+
+            // NOTE: But if the sequence rerurn two or more elements, it will still throw InvalidOperationException
+
+
+            // 3. SingleOrDefault<TSource>(Func<TSource, bool>) - return the only element that satisfies the condition or default(T)
+            int[] oneEvenForSingleOrDefault = { 1, 3, 4, 5 };
+            var singleEvenForSingleOrDefault = oneEvenForSingleOrDefault.SingleOrDefault(x => x % 2 == 0);
+            // Result: 4 (because 4 is the only even number)
+
+
+            // 4. SingleOrDefault<TSource>(Func<TSource, bool>, TSource defaultValue) - return the only element that satisfies the condition
+            // or the provided default value if no elements match
+            int singleOrDefaultWithConditionAndDefaultForSingleOrDefault =
+                oneEvenForSingleOrDefault.SingleOrDefault(x => x > 10, 999);
+            // Result: 999 (no elements satisfy the condition, custom default value is returned)
+
+
+            // NOTE: It throws InvalidOperationException if more than one element exists or more than one element matches the condition.
+
             #endregion
 
             #region ElementAt(); - get element at specified index, with or without default value;
