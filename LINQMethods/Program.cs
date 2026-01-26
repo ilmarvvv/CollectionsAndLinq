@@ -920,6 +920,34 @@ namespace LINQMethods
             #endregion
 
             #region Single(); - get single element from collection, with or without condition;
+            // Single means that the sequence must contain exactly one element (or exactly one matching element),
+            // otherwise thrown an InvalidOperationException
+
+            // 1. Single<TSource>() - return the only element of the sequence
+            int[] singleItemForSingle = { 42};
+            var singleForSingle = singleItemForSingle.Single();
+            // Result: 42 (because 42 is the only element in the sequence)
+
+
+            // Example 1: sequence is empty throws exception
+            var emptyForSingle = Array.Empty<int>();
+            // var valueEmptyForSingle = emptyForSingle.Single();
+            // Result: throws InvalidOperationException
+
+
+            // Example 2: sequence has more than one element throws exception
+            int[] multipleItemsForSingle = { 10, 20 };
+            // var valueMultipleForSingle = multipleItemsForSingle.Single();
+            // Result: throws InvalidOperationException
+
+
+            // 2. Single<TSource>(Func<TSource, bool>) - return the only element that satisfies the condition
+            int[] oneEvenForSingle = { 1, 3, 4, 5 };
+
+            var singleEvenForSingle = oneEvenForSingle.Single(x => x % 2 == 0);
+            // Result: 4 (because 4 is the only even number)
+
+            // NOTE: If no elements or more than one element satisfy the condition, Single() throws an InvalidOperationException
 
             #endregion
 
