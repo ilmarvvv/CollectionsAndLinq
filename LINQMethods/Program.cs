@@ -997,7 +997,26 @@ namespace LINQMethods
 
             #region ElementAt(); - get element at specified index, with or without default value;
 
-            var elementAtIndex = new int[] { 1, 2, 3, 4 }.ElementAt(2); // 3 because index 2 is the third element
+            int[] numbersForElementAt = { 10, 20, 30, 40 };
+
+            // 1. ElementAt<TSource>(int index) - return the element at the specified index
+            var elementAtIndexForElementAt = numbersForElementAt.ElementAt(2);
+            // Result: 30 (because it's the element at index 2)
+
+
+            // Example 1: index is out of range (throws)
+            var shortSequenceForElementAt = new[] { 1, 2 };
+            // var outOfRangeForElementAt = shortSequenceForElementAt.ElementAt(5);
+            // Result: throws ArgumentOutOfRangeException
+
+
+            // Example 2: negative index (throws)
+            // var negativeIndexForElementAt = numbersForElementAt.ElementAt(-1);
+            // Result: throws ArgumentOutOfRangeException
+
+
+            // NOTICE: ElementAt() throws ArgumentOutOfRangeException if the index is less than 0
+            // or greater than or equal to the number of elements in the sequence.
 
             #endregion
 
