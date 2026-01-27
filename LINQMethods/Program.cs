@@ -8,7 +8,11 @@ namespace LINQMethods
     {
         static void Main(string[] args)
         {
-            // TODO: add .NET version information to the region description available since (.NET 6+)
+            // TODO: Add .NET version information to the region description available since (.NET 6+)
+
+            // TODO: Add IEqualityComparer and IComparer custom examples
+
+            // TODO: Move classes to separate .cs files
 
             // Filtering (Фільтрація)
 
