@@ -1087,13 +1087,34 @@ namespace LINQMethods
 
             #region Any(); - check if any element satisfies a condition or if the sequence contains any elements;
 
-            // All(Func<TSource, bool>)
-            // Determines whether any element of a sequence satisfies a condition.
-            // If at least one element satisfies the condition, the result will be true.
-            bool any = new int[] { 1, 2, 3, 4 }.Any(x => x > 3); // true because there is at least one element greater than 3
+            int[] numbersForAny = { 1, 3, 4, 7 };
 
-            // This Any(); used to check if the collection contains any elements.
-            bool anyWithoutCondition = new int[] { 1, 2, 3, 4 }.Any(); // true because the array contains elements
+            // 1. Any<TSource>() - return true if the sequence contains at least one element
+            var anyForAny = numbersForAny.Any();
+            // Result: true (the sequence is not empty)
+
+
+            // Example 1: empty sequence (return false)
+            var anyEmptyForAny = Array.Empty<int>().Any();
+            // Result: false (the sequence contains no elements)
+
+
+            // 2. Any<TSource>(Func<TSource, bool>) - return true if any element satisfies the condition
+            var anyEvenForAny = numbersForAny.Any(x => x % 2 == 0);
+            // Result: true (4 is even)
+
+            // Example 1: no elements satisfy the condition
+            int[] oddNumbersForAny = { 1, 3, 5, 7 };
+            var anyEvenFalseForAny = oddNumbersForAny.Any(x => x % 2 == 0);
+            // Result: false (no even numbers found)
+
+
+            // Example 2: reference types
+            string[] wordsForAny = { "Apple", "Banana", "Cherry" };
+            var anyStartWithBForAny = wordsForAny.Any(w => w.StartsWith("B"));
+            // Result: true ("Banana" starts with 'B')
+
+            // Note: Any() returns false for an empty sequence because there are no elements to satisfy the condition
 
             #endregion
 
