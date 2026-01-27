@@ -1120,20 +1120,36 @@ namespace LINQMethods
 
             #region Contains(); - check if collection contains specified element;
 
-            bool contains = new int[] { 1, 2, 3, 4 }.Contains(3); // true because 3 is in the array
-            bool containsNotFound = new string[] { "cat", "dog", "squirrel", "wolf" }.Contains("human"); // false because "human" is not in the array
+            string[] wordsForContains = { "Apple", "Banana", "Orange" };
 
-            var nameList = new List<Person>
-            {
-                new Person { Name = "Alice" },
-                new Person { Name = "Bob" }
-            };
 
-            bool containsDefault = nameList.Contains(new Person { Name = "Alice" }); // false because default equality check compares references, not values
+            // 1. Contains<TSource>(TSource value) - return true if the sequence contains the specified element
+            var containsBananaForContains = wordsForContains.Contains("Banana");
+            // Result: true
 
-            // Using Contains with custom comparer because Person is a complex type and default equality check won't work as expected
-            bool containsWithCustomComparer = nameList.Contains(new Person { Name = "Alice" }, new PersonNameComparer()); // true because a person with the name "Alice" exists in the list
-            // Important: You need create custom comparer that implements IEqualityComparer<Person> interface like PersonNameComparer class above
+
+            // Example 1: element is not found
+            var containsKiwiForContains = wordsForContains.Contains("Kiwi");
+            // Result: false
+
+
+            // Example 2: with numbers
+            int[] numbersForContains = { 1, 3, 4, 6 };
+            var containsFourForContains = numbersForContains.Contains(4);
+            // Result: true
+
+
+            // 2. Contains<TSource>(TSource value, IEqualityComparer<TSource> comparer) - return true using a custom comparer
+            var containsAppleIgnoreCaseForContains =
+                wordsForContains.Contains("apple", StringComparer.OrdinalIgnoreCase);
+            // Result: true
+
+            // Example 1: reference types and null
+            string[] wordsWithNullForContains = { "A", null, "B" };
+            var containsNullForContains = wordsWithNullForContains.Contains(null);
+            // Result: true
+
+            // TODO: You can also create your own custom comparer that implements IEqualityComparer<T> interface
 
             #endregion
 
@@ -1592,18 +1608,6 @@ namespace LINQMethods
 
     }
 
-    class PersonNameComparer : IEqualityComparer<Person>
-    {
-        public bool Equals(Person a, Person b)
-        {
-            return a.Name == b.Name;
-        }
-
-        public int GetHashCode(Person p)
-        {
-            return p.Name.GetHashCode();
-        }
-    }
     class UserForIntersect
     {
         public int Id { get; set; }
