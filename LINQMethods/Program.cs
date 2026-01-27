@@ -1058,11 +1058,30 @@ namespace LINQMethods
 
             #region All(); - check if all elements satisfy a condition;
 
-            // All(Func<TSource, bool>)
-            // Determines whether all elements of a sequence satisfy a condition.
-            // Even if one element does not satisfy the condition, the result will be false.
-            bool all = new int[] { 1, 2, 3, 4 }.All(x => x > 0); // true because all elements are greater than 0
+            // 1. All<TSource>(Func<TSource, bool>) - return true if all elements satisfy the condition
+            int[] numbersForAll = { 2, 4, 6, 8 };
+            var allEvenForAll = numbersForAll.All(x => x % 2 == 0);
+            // Result: true (all numbers are even)
 
+
+            // Example 1: not all elements satisfy the condition
+            int[] mixedNumbersForAll = { 2, 3, 4, 6 };
+            var allEvenFalseForAll = mixedNumbersForAll.All(x => x % 2 == 0);
+            // Result: false (3 is not even)
+
+
+            // Example 2: empty sequence (returns true)
+            var allEmptyForAll = Array.Empty<int>().All(x => x > 0);
+            // Result: true (vacuously true, no elements violate the condition)
+
+
+            // Example 3: reference types
+            string[] wordsForAll = { "Apple", "Avocado", "Apricot" };
+            var allStartWithAForAll = wordsForAll.All(w => w.StartsWith("A"));
+            // Result: true
+
+
+            // NOTICE: All() returns true for an empty sequence because there are no elements that violate the condition
 
             #endregion
 
