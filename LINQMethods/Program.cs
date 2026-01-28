@@ -1296,6 +1296,52 @@ namespace LINQMethods
 
             #region Max(); - get maximum value from numeric collection, with or without selector;
 
+            int[] numbersForMax = { 1, 3, 4, 6 };
+
+
+            // 1. Max<TSource>() - return the maximum element in the sequence
+            var maxForMax = numbersForMax.Max();
+            // Result: 6
+
+
+            // Example 1: empty sequence (throws)
+            var emptyForMax = Array.Empty<int>();
+            // var valueEmptyForMax = emptyForMax.Max();
+            // Result: throws InvalidOperationException
+
+
+            // 2. Max<TSource>(Func<TSource, TResult>) - return the maximum value projected by the selector
+            People[] peopleForMax =
+            {
+                new People("Alice", 25),
+                new People("Bob", 30),
+                new People("Charlie", 20)
+            };
+
+            var maxAgeForMax = peopleForMax.Max(p => p.Age);
+            // Result: 30
+
+
+            // Example 2: reference types with selector
+            string[] wordsForMax = { "Apple", "Banana", "Cherry" };
+
+            var maxLengthForMax = wordsForMax.Max(w => w.Length);
+            // Result: 6 ("Banana" or "Cherry")
+
+
+            // Example 3: nullable value types
+            int?[] nullableNumbersForMax = { 1, null, 5, 3 };
+
+            var maxNullableForMax = nullableNumbersForMax.Max();
+            // Result: 5
+
+
+            // Example 4: all values are null (returns null)
+            int?[] allNullsForMax = { null, null };
+
+            var maxAllNullsForMax = allNullsForMax.Max();
+            // Result: null
+
             #endregion
 
             #region MaxBy(); - get element with maximum key value from collection;
