@@ -1346,6 +1346,45 @@ namespace LINQMethods
 
             #region MaxBy(); - get element with maximum key value from collection;
 
+            People[] peopleForMaxBy =
+            {
+                new People("Alice", 25),
+                new People("Bob", 30),
+                new People("Charlie", 20)
+            };
+
+
+            // 1. MaxBy<TSource, TKey>(Func<TSource, TKey>) - return the element with the maximum key
+            var oldestPersonForMaxBy = peopleForMaxBy.MaxBy(p => p.Age);
+            // Result: People { Name = "Bob", Age = 30 }
+
+
+            // Example 1: multiple elements with the same max key
+            People[] peopleWithSameMaxAgeForMaxBy =
+            {
+                new People("Alice", 30),
+                new People("Bob", 30),
+                new People("Charlie", 25)
+            };
+
+            var firstOldestForMaxBy = peopleWithSameMaxAgeForMaxBy.MaxBy(p => p.Age);
+            // Result: People { Name = "Alice", Age = 30 }
+            // Note: If multiple elements have the same maximum key, the FIRST one is returned.
+
+
+            // Example 2: empty sequence
+            var emptyForMaxBy = Array.Empty<People>();
+
+            // var valueEmptyForMaxBy = emptyForMaxBy.MaxBy(p => p.Age);
+            // Result: throws InvalidOperationException
+
+
+            // Example 3: reference types with selector
+            string[] wordsForMaxBy = { "Apple", "Banana", "Cherry" };
+
+            var longestWordForMaxBy = wordsForMaxBy.MaxBy(w => w.Length);
+            // Result: "Banana" (or "Cherry", but "Banana" appears first)
+
             #endregion
 
             #region Min(); - get minimum value from numeric collection, with or without selector;
