@@ -1192,6 +1192,37 @@ namespace LINQMethods
 
             #region CountBy(); - count elements in collection by specified key, with or without condition;
 
+            People[] peopleForCountBy =
+            {
+                new People("Alice", 25),
+                new People("Bob", 30),
+                new People("Charlie", 25)
+            };
+
+
+            // 1. CountBy<TSource, TKey>(Func<TSource, TKey>) - count elements by key
+            var countByAgeForCountBy = peopleForCountBy.CountBy(p => p.Age);
+            // Result:
+            // (25, 2)
+            // (30, 1)
+
+
+            // Example 1: count people by age group (adult / under 30)
+            var countByAgeGroupForCountBy =
+                peopleForCountBy.CountBy(p => p.Age >= 30);
+            // Result:
+            // (false, 2) // under 30
+            // (true, 1)  // 30 and above
+
+
+            // Example 2: count people by first letter of name
+            var countByFirstLetterForCountBy =
+                peopleForCountBy.CountBy(p => p.Name[0]);
+            // Result:
+            // ('A', 1)
+            // ('B', 1)
+            // ('C', 1)
+
             #endregion
 
             #region LongCount(); - count elements in collection, with or without condition, returns long type;
