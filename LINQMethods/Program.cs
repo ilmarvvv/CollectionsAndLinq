@@ -1161,8 +1161,32 @@ namespace LINQMethods
 
             #region Count(); - count elements in collection, with or without condition;
 
-            int count = new int[] { 1, 2, 3, 4 }.Count(); // 4
-            int countWithCondition = new int[] { 1, 2, 3, 4 }.Count(x => x > 2); // 2 because only 3 and 4 are greater than 2
+            int[] numbersForCount = { 1, 3, 4, 6 };
+
+            // 1. Count<TSource>() - return the total number of elements in the sequence
+            var countForCount = numbersForCount.Count();
+            // Result: 4
+
+
+            // Example 1.1: empty sequence
+            var countEmptyForCount = Array.Empty<int>().Count();
+            // Result: 0
+
+
+            // Example 2.2: reference types
+            string[] wordsForCount = { "Apple", "Banana", "Cherry" };
+            var countWordsForCount = wordsForCount.Count();
+            // Result: 3
+
+
+            // 2. Count<TSource>(Func<TSource, bool>) - return the number of elements that satisfy the condition
+            var evenCountForCount = numbersForCount.Count(x => x % 2 == 0);
+            // Result: 2 (4 and 6)
+
+
+            // Example 2.1: counting with a condition on reference types
+            var countStartWithBForCount = wordsForCount.Count(w => w.StartsWith("B"));
+            // Result: 1 ("Banana")
 
             #endregion
 
