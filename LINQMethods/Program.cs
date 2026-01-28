@@ -1227,6 +1227,28 @@ namespace LINQMethods
 
             #region LongCount(); - count elements in collection, with or without condition, returns long type;
 
+            int[] numbersForLongCount = { 1, 3, 4, 6 };
+
+            // 1. LongCount<TSource>() - return the total number of elements in the sequence as long
+            var longCountForLongCount = numbersForLongCount.LongCount();
+            // Result: 4L
+
+
+            // 2. LongCount<TSource>(Func<TSource, bool>) - return the number of elements that satisfy the condition as long
+            var evenLongCountForLongCount = numbersForLongCount.LongCount(x => x % 2 == 0);
+            // Result: 2L (4 and 6)
+
+
+            // Example 1: empty sequence
+            var longCountEmptyForLongCount = Array.Empty<int>().LongCount();
+            // Result: 0L
+
+
+            // Example 2: reference types
+            string[] wordsForLongCount = { "Apple", "Banana", "Cherry" };
+            var longCountWordsForLongCount = wordsForLongCount.LongCount();
+            // Result: 3L
+
             #endregion
 
             #region TryGetNonEnumeratedCount(); - try to get count of elements in collection without enumerating it;
