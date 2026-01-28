@@ -1252,6 +1252,45 @@ namespace LINQMethods
             #endregion
 
             #region TryGetNonEnumeratedCount(); - try to get count of elements in collection without enumerating it;
+            // TryGetNonEnumeratedCount() does NOT count elements. It checks whether the sequence already knows its exact count.
+
+            int[] numbersForTryGetNonEnumeratedCount = { 1, 2, 3, 4 };
+
+            // 1. TryGetNonEnumeratedCount(out int count) - try to get count without enumeration
+            bool successForArray =
+                numbersForTryGetNonEnumeratedCount.TryGetNonEnumeratedCount(out int countForArray);
+            // Result:
+            // successForArray = true
+            // countForArray = 4
+
+
+            // Example 1: List<T> also supports non-enumerated count
+            List<string> wordsForTryGetNonEnumeratedCount = new() { "Apple", "Banana", "Cherry" };
+
+            bool successForList =
+                wordsForTryGetNonEnumeratedCount.TryGetNonEnumeratedCount(out int countForList);
+            // Result:
+            // successForList = true
+            // countForList = 3
+
+
+            // Example 2: IEnumerable<T> without known count
+            IEnumerable<int> generatedSequenceForTryGetNonEnumeratedCount =
+                Enumerable.Range(1, 10).Where(x => x > 5);
+
+            bool successForEnumerable =
+                generatedSequenceForTryGetNonEnumeratedCount.TryGetNonEnumeratedCount(out int countForEnumerable);
+            // Result:
+            // successForEnumerable = false
+            // countForEnumerable = 0
+
+
+            // Example 3: safe fallback to Count()
+            int finalCountForTryGetNonEnumeratedCount =
+                generatedSequenceForTryGetNonEnumeratedCount.TryGetNonEnumeratedCount(out int safeCount)
+                    ? safeCount
+                    : generatedSequenceForTryGetNonEnumeratedCount.Count();
+            // Result: 5
 
             #endregion
 
