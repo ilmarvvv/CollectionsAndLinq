@@ -1389,6 +1389,52 @@ namespace LINQMethods
 
             #region Min(); - get minimum value from numeric collection, with or without selector;
 
+            int[] numbersForMin = { 1, 3, 4, 6 };
+
+
+            // 1. Min<TSource>() - return the minimum element in the sequence
+            var minForMin = numbersForMin.Min();
+            // Result: 1
+
+
+            // Example 1: empty sequence (throws)
+            var emptyForMin = Array.Empty<int>();
+            // var valueEmptyForMin = emptyForMin.Min();
+            // Result: throws InvalidOperationException
+
+
+            // 2. Min<TSource>(Func<TSource, TResult>) - return the minimum value projected by the selector
+            People[] peopleForMin =
+            {
+                new People("Alice", 25),
+                new People("Bob", 30),
+                new People("Charlie", 20)
+            };
+
+            var minAgeForMin = peopleForMin.Min(p => p.Age);
+            // Result: 20
+
+
+            // Example 2: reference types with selector
+            string[] wordsForMin = { "Apple", "Banana", "Cherry" };
+
+            var minLengthForMin = wordsForMin.Min(w => w.Length);
+            // Result: 5 ("Apple")
+
+
+            // Example 3: nullable value types
+            int?[] nullableNumbersForMin = { 1, null, 5, 3 };
+
+            var minNullableForMin = nullableNumbersForMin.Min();
+            // Result: 1
+
+
+            // Example 4: all values are null (returns null)
+            int?[] allNullsForMin = { null, null };
+
+            var minAllNullsForMin = allNullsForMin.Min();
+            // Result: null
+
             #endregion
 
             #region MinBy(); - get element with minimum key value from collection;
