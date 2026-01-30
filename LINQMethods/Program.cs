@@ -1439,6 +1439,53 @@ namespace LINQMethods
 
             #region MinBy(); - get element with minimum key value from collection;
 
+            People[] peopleForMinBy =
+            {
+                new People("Alice", 25),
+                new People("Bob", 30),
+                new People("Charlie", 20)
+            };
+
+
+            // 1. MinBy<TSource, TKey>(Func<TSource, TKey>) - return the element with the minimum key
+            var youngestPersonForMinBy = peopleForMinBy.MinBy(p => p.Age);
+            // Result: People { Name = "Charlie", Age = 20 }
+
+
+            // Example 1: multiple elements with the same minimum key
+            People[] peopleWithSameMinAgeForMinBy =
+            {
+                new People("Alice", 20),
+                new People("Bob", 20),
+                new People("Charlie", 25)
+            };
+
+            var firstYoungestForMinBy = peopleWithSameMinAgeForMinBy.MinBy(p => p.Age);
+            // Result: People { Name = "Alice", Age = 20 }
+            // Note: If multiple elements have the same minimum key, the FIRST one is returned.
+
+
+            // Example 2: empty sequence (throws)
+            var emptyForMinBy = Array.Empty<People>();
+
+            // var valueEmptyForMinBy = emptyForMinBy.MinBy(p => p.Age);
+            // Result: throws InvalidOperationException
+
+
+            // Example 3: reference types with selector
+            string[] wordsForMinBy = { "Apple", "Banana", "Cherry" };
+
+            var shortestWordForMinBy = wordsForMinBy.MinBy(w => w.Length);
+            // Result: "Apple" (length 5)
+
+
+            // 2. MinBy<TSource, TKey>(Func<TSource, TKey>, IComparer<TKey>) - use custom comparer
+            var minByIgnoreCaseForMinBy =
+                wordsForMinBy.MinBy(w => w, StringComparer.OrdinalIgnoreCase);
+            // Result: "Apple"
+
+            // TODO: Create your own custom comparer that implements IComparer<T> interface
+
             #endregion
 
             #region Sum(); - calculate sum of numeric collection, with or without selector;
