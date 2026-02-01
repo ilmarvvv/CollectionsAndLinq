@@ -1490,6 +1490,59 @@ namespace LINQMethods
 
             #region Sum(); - calculate sum of numeric collection, with or without selector;
 
+            // Sum() has meny overloads for different numeric types(int, double, float, decimal, long, short, byte)
+            // and their nullable versions(int?, double?, float?, decimal?, long?, short?, byte?)
+
+            
+            int[] numbersForSum = { 1, 3, 4, 6 };
+
+            // 1.Sum() - returns the total sum of numeric elements
+            var sumForSum = numbersForSum.Sum();
+            // Result: 14
+
+
+            // Example 1.1: empty sequence
+            var sumEmptyForSum = Array.Empty<int>().Sum();
+            // Result: 0
+
+
+            // Example 1.2: nullable values (nulls are ignored)
+            int?[] nullableNumbersForSum = { 1, null, 3 };
+
+            var sumNullableForSum = nullableNumbersForSum.Sum();
+            // Result: 4
+
+
+            // Example 1.3: all nulls
+            int?[] allNullsForSum = { null, null };
+
+            var sumAllNullsForSum = allNullsForSum.Sum();
+            // Result: 0
+
+
+            // 2. Sum<TSource>(Func<TSource, TResult>) - returns the sum using a selector
+            var productsForSum = new[]
+            {
+                new { Name = "Apple", Price = 10.5m },
+                new { Name = "Banana", Price = 2.0m },
+                new { Name = "Cherry", Price = 0.5m }
+            };
+
+            var totalPriceForSum = productsForSum.Sum(p => p.Price);
+            // Result: 13.0
+
+
+            // Example 2.1: selector with nullable property
+            var productsWithNullableForSum = new[]
+            {
+                new { Name = "A", Price = (decimal?)10m },
+                new { Name = "B", Price = (decimal?)null },
+                new { Name = "C", Price = (decimal?)5m }
+            };
+
+            var totalNullableForSum = productsWithNullableForSum.Sum(p => p.Price);
+            // Result: 15
+
             #endregion
 
             #region Average(); - calculate average value of numeric collection;
