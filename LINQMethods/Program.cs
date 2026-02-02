@@ -1547,16 +1547,70 @@ namespace LINQMethods
 
             #region Average(); - calculate average value of numeric collection;
 
-            // Average() work with numeric types only(int, double, float, decimal, long, short, byte) and nullable as well(int?, double?, float?, decimal?, long?, short?, byte?)
-            // returns double or decimal type depending on the input
-            double average = new int[] { 1, 2, 3, 4, 5 }.Average(); // result is 3.0 because (1 + 2 + 3 + 4 + 5) / 5 = 3.0
+            // Average() has meny overloads for different numeric types(int, double, float, decimal, long, short, byte)
+            // and their nullable versions(int?, double?, float?, decimal?, long?, short?, byte?)
 
 
-            var people = new[] { new { Name = "Ann", Age = 20 }, new { Name = "Bob", Age = 30 }, new { Name = "Carl", Age = 40 } };
-            // This Average with selector for collections of complex types
-            var averageWithSelector = peopleForOderdBy.Average(p => p.Age); // result is 30.0 because (20 + 30 + 40) / 3 = 30.0
+            // 1. Average() - returns the average of numeric elements
+            int[] numbersForAverage = { 2, 4, 6, 8 };
 
-            #endregion 
+            var averageForAverage = numbersForAverage.Average();
+            // Result: 5
+
+
+            // Example 1.1: single element
+            int[] singleForAverage = { 10 };
+
+            var averageSingleForAverage = singleForAverage.Average();
+            // Result: 10
+
+
+            // Example 1.2: nullable values (nulls are ignored)
+            int?[] nullableNumbersForAverage = { 2, null, 6 };
+
+            var averageNullableForAverage = nullableNumbersForAverage.Average();
+            // Result: 4
+
+
+            // Example 1.3: floating point
+            double[] doubleNumbersForAverage = { 1.5, 2.5, 3.0 };
+
+            var averageDoubleForAverage = doubleNumbersForAverage.Average();
+            // Result: 2.3333333333333335
+
+            // Example 1.4: all nulls
+            var averageNullableDoubleForAverage = new double?[] { null }.Average();
+            // Result: null
+
+            // TODO: Add empty sequence example that throws InvalidOperationException
+
+
+            // 2. Average<TSource>(Func<TSource, numeric>) - returns the average using a numeric selector
+            var productsForAverage = new[]
+                        {
+                new { Name = "A", Price = 10m },
+                new { Name = "B", Price = 20m },
+                new { Name = "C", Price = 30m }
+            };
+
+            var averagePriceForAverage = productsForAverage.Average(p => p.Price);
+            // Result: 20
+
+
+            // Example 2.1: selector returning int
+            var wordsForAverage = new[] { "Apple", "Banana", "Cherry" };
+
+            var averageLengthForAverage = wordsForAverage.Average(w => w.Length);
+            // Result: 5.666666666666667
+
+
+            // Important:
+            // - Works only with numeric types (int, long, float, double, decimal + nullable variants)
+            // - Throws InvalidOperationException if sequence is empty
+            // - For nullable sequences: throws if all elements are null
+            // - Immediate execution
+
+            #endregion
 
             #region Aggregate(); - Universal method can be used for any mathematic operation and concatenation with any type and more...
 
