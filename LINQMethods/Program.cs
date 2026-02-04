@@ -14,6 +14,8 @@ namespace LINQMethods
 
             // TODO: Move classes to separate .cs files
 
+            // TODO: Replece NOTE and NOTICE with Important like in Average method example
+
             // Filtering (Фільтрація)
 
             #region Where(); - filter elements in collection by specified condition;
