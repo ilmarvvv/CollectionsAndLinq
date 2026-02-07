@@ -1772,6 +1772,60 @@ namespace LINQMethods
 
             #region ToLookup(); - convert collection to Lookup by specified key and element selectors, with or without comparer;
 
+            // 1. ToLookup(keySelector)
+            string[] wordsForToLookup = { "apple", "banana", "apricot", "blueberry" };
+
+            var lookupForToLookup = wordsForToLookup.ToLookup(w => w[0]);
+
+            // Result:
+            // 'a' → { "apple", "apricot" }
+            // 'b' → { "banana", "blueberry" }
+
+
+            // Example 1.1: missing key does NOT throw
+            var missingKeyForToLookup = lookupForToLookup['z'];
+            // Result: empty sequence
+
+
+
+            // 2. ToLookup(keySelector, comparer)
+            var lookupIgnoreCaseForToLookup =
+                wordsForToLookup.ToLookup(w => char.ToLower(w[0]));
+
+
+            // 3. ToLookup(keySelector, elementSelector)
+            var productsForToLookup = new[]
+            {
+                new { Name = "Apple", Category = "Fruit" },
+                new { Name = "Carrot", Category = "Vegetable" },
+                new { Name = "Banana", Category = "Fruit" }
+            };
+
+            var lookupNamesForToLookup =
+                productsForToLookup.ToLookup(p => p.Category, p => p.Name);
+
+            // Result:
+            // "Fruit" → { "Apple", "Banana" }
+            // "Vegetable" → { "Carrot" }
+
+
+
+            // 4. ToLookup(keySelector, elementSelector, comparer)
+            var lookupWithComparerForToLookup =
+                productsForToLookup.ToLookup(
+                    p => p.Category,
+                    p => p.Name,
+                    StringComparer.OrdinalIgnoreCase);
+
+
+
+            // Important:
+            // - Immediate execution (unlike GroupBy())
+            // - Returns ILookup<TKey, TElement>
+            // - Missing keys return empty sequence
+            // - Immutable structure (cannot add/remove groups)
+            // - Similar to Dictionary<TKey, List<T>>, but read-only
+
             #endregion
 
             // Joins (З’єднання)
