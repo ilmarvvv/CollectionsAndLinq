@@ -1929,10 +1929,47 @@ namespace LINQMethods
 
             #region Empty(); - create an empty collection of specified type;
 
-            // Using when you need return empty collection from method
-            // Good for LINQ you can avoid null reference exceptions
-            var emptyArray = Enumerable.Empty<int>(); // creates an empty IEnumerable<int>
-            var emptyList = new List<string>(); // creates an empty List<string>
+            // 1. Basic usage
+            var emptyIntsForEmpty = Enumerable.Empty<int>();
+
+            // Result:
+            // { }  (no elements)
+
+
+            // Example 1.1: foreach over empty sequence
+            foreach (var item in Enumerable.Empty<string>())
+            {
+                // This code never executes
+            }
+
+
+            // Example 1.2: Count on empty sequence
+            var countForEmpty = Enumerable.Empty<int>().Count();
+            // Result: 0
+
+
+            // Example 1.3: Safe default return instead of null
+            IEnumerable<int> GetNumbers(bool returnEmpty)
+            {
+                if (returnEmpty)
+                    return Enumerable.Empty<int>();
+
+                return new[] { 1, 2, 3 };
+            }
+
+
+            // Example 1.4: Using in concatenation
+            var numbersForEmpty = new[] { 1, 2, 3 };
+
+            var resultForEmpty = numbersForEmpty.Concat(Enumerable.Empty<int>());
+            // Result: { 1, 2, 3 }
+
+
+            // Important:
+            // - Returns a cached singleton empty sequence
+            // - No allocation on each call
+            // - Preferred over returning null
+            // - Deferred execution (no enumeration happens)
 
             #endregion
 
