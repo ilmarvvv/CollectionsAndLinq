@@ -1975,6 +1975,41 @@ namespace LINQMethods
 
             #region Range(); - create a collection with a range of sequential numbers;
 
+            // 1.Range(int start, int count)
+            var rangeForRange = Enumerable.Range(1, 5);
+
+            // Result:
+            // { 1, 2, 3, 4, 5 }
+
+
+            // Example 1.1: start from 0
+            var zeroStartForRange = Enumerable.Range(0, 3);
+            // Result: { 0, 1, 2 }
+
+
+            // Example 1.2: negative start
+            var negativeStartForRange = Enumerable.Range(-3, 4);
+            // Result: { -3, -2, -1, 0 }
+
+
+            // Example 1.3: empty sequence (count = 0)
+            var emptyForRange = Enumerable.Range(10, 0);
+            // Result: { }
+
+
+            // Example 1.4: commonly used for projection
+            var squaresForRange = Enumerable.Range(1, 5)
+                                             .Select(x => x * x);
+
+            // Result: { 1, 4, 9, 16, 25 }
+
+
+            // Important:
+            // - Generates numbers lazily (deferred execution)
+            // - count must be >= 0
+            // - Throws ArgumentOutOfRangeException if count < 0
+            // - Throws ArgumentOutOfRangeException if start + count - 1 exceeds Int32.MaxValue
+
             #endregion
 
             #region Repeat(); - create a collection with repeated elements;
