@@ -2014,6 +2014,44 @@ namespace LINQMethods
 
             #region Repeat(); - create a collection with repeated elements;
 
+            // Repeat<TResult>(TResult element, int count)
+
+
+            // 1. Basic usage
+            var repeatForRepeat = Enumerable.Repeat("Hello", 3);
+
+            // Result:
+            // { "Hello", "Hello", "Hello" }
+
+
+            // Example 1.1: repeating numbers
+            var numbersForRepeat = Enumerable.Repeat(5, 4);
+            // Result: { 5, 5, 5, 5 }
+
+
+            // Example 1.2: count = 0 (empty sequence)
+            var emptyForRepeat = Enumerable.Repeat("Test", 0);
+            // Result: { }
+
+
+            // Example 1.3: commonly used with Select (initialization pattern)
+            var indexesForRepeat = Enumerable.Repeat(0, 5)
+                                              .Select((value, index) => index);
+
+            // Result: { 0, 1, 2, 3, 4 }
+
+
+            // Example 1.4: creating default values
+            var defaultIntsForRepeat = Enumerable.Repeat(default(int), 3);
+            // Result: { 0, 0, 0 }
+
+
+            // Important:
+            // - Deferred execution
+            // - count must be >= 0
+            // - Throws ArgumentOutOfRangeException if count < 0
+            // - Often used to initialize collections or generate placeholders
+
             #endregion
 
             #region InfiniteSequence(); - create an infinite collection by specified generator function;
