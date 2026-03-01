@@ -2085,6 +2085,36 @@ namespace LINQMethods
 
             #region Sequence(); - generate a sequence of values based on a generator function;
 
+            // 1. Sequence(start, step, endInclusive)
+            var sequenceForSequence =
+                Enumerable.Sequence(0, 2, 10);
+
+            // Result:
+            // { 0, 2, 4, 6, 8, 10 }
+
+
+            // Example 1.1: negative step
+            var descendingForSequence =
+                Enumerable.Sequence(10, -3, 1);
+
+            // Result:
+            // { 10, 7, 4, 1 }
+
+
+            // Example 1.2: decimal
+            var decimalsForSequence =
+                Enumerable.Sequence(1.5m, 0.5m, 3.0m);
+
+            // Result:
+            // { 1.5, 2.0, 2.5, 3.0 }
+
+
+            // Important:
+            // - Finite sequence (unlike InfiniteSequence())
+            // - Deferred execution
+            // - Available in .NET 10+ only
+            // - Stops when endInclusive is reached or passed
+
             #endregion
 
             // Conversion / Materialization (Конвертація / матеріалізація)
