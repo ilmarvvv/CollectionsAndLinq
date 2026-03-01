@@ -2328,6 +2328,64 @@ namespace LINQMethods
 
             #region ToList(); - convert collection to List;
 
+            // ToList<TSource>(IEnumerable<TSource> source)
+
+
+            // 1. Basic usage
+            int[] numbersForToList = { 1, 2, 3, 4 };
+
+            var listForToList = numbersForToList.ToList();
+
+            // Result:
+            // { 1, 2, 3, 4 }
+
+
+
+            // Example 1.1: converting from LINQ query
+            var squaresForToList = Enumerable.Range(1, 5)
+                                              .Select(x => x * x)
+                                              .ToList();
+
+            // Result:
+            // { 1, 4, 9, 16, 25 }
+
+
+
+            // Example 1.2: empty sequence
+            var emptyForToList = Enumerable.Empty<int>()
+                                            .ToList();
+
+            // Result:
+            // { }
+
+
+
+            // Example 1.3: materializing deferred execution
+            var queryForToList = Enumerable.Range(1, 3)
+                                            .Select(x => x * 10);
+
+            var materializedForToList = queryForToList.ToList();
+
+            // Result:
+            // { 10, 20, 30 }
+
+
+
+            // Example 1.4: modifying resulting list
+            var modifiableForToList = numbersForToList.ToList();
+            modifiableForToList.Add(5);
+
+            // Result:
+            // { 1, 2, 3, 4, 5 }
+
+
+
+            // Important:
+            // - Immediate execution (forces enumeration)
+            // - Creates a new List<T>
+            // - Result is mutable
+            // - Useful for materializing deferred queries
+
             #endregion
 
             // Concatenation (Склеювання)
