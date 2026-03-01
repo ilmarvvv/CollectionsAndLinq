@@ -2470,6 +2470,81 @@ namespace LINQMethods
 
             #region SequenceEqual(); - check if two collections are equal;
 
+            // 1. Basic usage
+            var firstForSequenceEqual = new[] { 1, 2, 3 };
+            var secondForSequenceEqual = new[] { 1, 2, 3 };
+
+            var resultForSequenceEqual =
+                firstForSequenceEqual.SequenceEqual(secondForSequenceEqual);
+
+            // Result:
+            // true
+
+
+
+            // Example 1.1: different order
+            var differentOrderForSequenceEqual = new[] { 3, 2, 1 };
+
+            var resultDifferentOrderForSequenceEqual =
+                firstForSequenceEqual.SequenceEqual(differentOrderForSequenceEqual);
+
+            // Result:
+            // false (order matters)
+
+
+
+            // Example 1.2: different length
+            var shorterForSequenceEqual = new[] { 1, 2 };
+
+            var resultDifferentLengthForSequenceEqual =
+                firstForSequenceEqual.SequenceEqual(shorterForSequenceEqual);
+
+            // Result:
+            // false
+
+
+
+            // 2. Using custom comparer (case-insensitive)
+            var words1ForSequenceEqual = new[] { "apple", "banana" };
+            var words2ForSequenceEqual = new[] { "APPLE", "BANANA" };
+
+            var resultIgnoreCaseForSequenceEqual =
+                words1ForSequenceEqual.SequenceEqual(
+                    words2ForSequenceEqual,
+                    StringComparer.OrdinalIgnoreCase);
+
+            // Result:
+            // true
+
+
+
+            // Example 2.1: reference types with default comparer
+            var objects1ForSequenceEqual = new[]
+            {
+                new { Id = 1 },
+                new { Id = 2 }
+            };
+
+            var objects2ForSequenceEqual = new[]
+            {
+                new { Id = 1 },
+                new { Id = 2 }
+            };
+
+            var resultAnonymousForSequenceEqual =
+                objects1ForSequenceEqual.SequenceEqual(objects2ForSequenceEqual);
+
+            // Result:
+            // true (anonymous types compare by value)
+
+
+
+            // Important:
+            // - Immediate execution
+            // - Order matters
+            // - Length must be equal
+            // - Uses EqualityComparer<T>.Default unless comparer is provided
+
             #endregion
 
             // Default/Null-safety
