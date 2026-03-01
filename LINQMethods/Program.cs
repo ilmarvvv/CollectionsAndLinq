@@ -2141,6 +2141,62 @@ namespace LINQMethods
 
             #region ToArray(); - convert collection to array;
 
+            // ToArray<TSource>(IEnumerable<TSource> source)
+
+
+            // 1. Basic usage
+            int[] numbersForToArray = { 1, 2, 3, 4 };
+
+            var arrayForToArray = numbersForToArray.ToArray();
+
+            // Result:
+            // { 1, 2, 3, 4 }
+
+
+            // Example 1.1: converting from LINQ query
+            var squaresForToArray = Enumerable.Range(1, 5)
+                                               .Select(x => x * x)
+                                               .ToArray();
+
+            // Result:
+            // { 1, 4, 9, 16, 25 }
+
+
+            // Example 1.2: empty sequence
+            var emptyForToArray = Enumerable.Empty<int>()
+                                             .ToArray();
+
+            // Result:
+            // { }
+
+
+            // Example 1.3: reference types
+            string[] wordsForToArray = { "Apple", "Banana", "Cherry" };
+
+            var resultForToArray = wordsForToArray
+                                    .Where(w => w.StartsWith("B"))
+                                    .ToArray();
+
+            // Result:
+            // { "Banana" }
+
+
+            // Example 1.4: materializing deferred execution
+            var queryForToArray = Enumerable.Range(1, 3)
+                                             .Select(x => x * 10);
+
+            var materializedForToArray = queryForToArray.ToArray();
+
+            // Result:
+            // { 10, 20, 30 }
+
+
+            // Important:
+            // - Immediate execution (forces enumeration)
+            // - Creates a new array
+            // - Useful for materializing deferred queries
+            // - Array size is fixed after creation
+
             #endregion
 
             #region ToDictionary(); - convert collection to dictionary by specified key and element selectors, with or without comparer;
