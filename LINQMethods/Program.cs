@@ -2056,6 +2056,31 @@ namespace LINQMethods
 
             #region InfiniteSequence(); - create an infinite collection by specified generator function;
 
+            // Enumerable.InfiniteSequence<T>(T start, T step)
+            // where T : IAdditionOperators<T, T, T>
+
+            var firstFiveForInfiniteSequence =
+                Enumerable.InfiniteSequence(0, 2)
+                          .Take(5);
+
+            // Result:
+            // { 0, 2, 4, 6, 8 }
+
+
+            // Example 1.1: decimal
+            var decimalsForInfiniteSequence =
+                Enumerable.InfiniteSequence(1.5m, 0.5m)
+                          .Take(4);
+
+            // Result:
+            // { 1.5, 2.0, 2.5, 3.0 }
+
+
+            // Important:
+            // - Infinite sequence (always limit with Take/First/etc.)
+            // - Deferred execution
+            // - Available in .NET 10+ only
+
             #endregion
 
             #region Sequence(); - generate a sequence of values based on a generator function;
