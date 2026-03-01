@@ -2276,6 +2276,54 @@ namespace LINQMethods
 
             #region ToHashSet(); - convert collection to HashSet, with or without comparer;
 
+            // 1. Basic usage
+            var numbersForToHashSet = new[] { 1, 2, 2, 3, 3, 3 };
+
+            var hashSetForToHashSet =
+                numbersForToHashSet.ToHashSet();
+
+            // Result:
+            // { 1, 2, 3 }  (duplicates removed)
+
+
+
+            // Example 1.1: reference types
+            var wordsForToHashSet = new[] { "Apple", "Banana", "Apple" };
+
+            var uniqueWordsForToHashSet =
+                wordsForToHashSet.ToHashSet();
+
+            // Result:
+            // { "Apple", "Banana" }
+
+
+
+            // Example 1.2: using custom comparer (case-insensitive)
+            var wordsIgnoreCaseForToHashSet =
+                new[] { "apple", "Apple", "BANANA" }
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            // Result:
+            // { "apple", "BANANA" }
+
+
+
+            // Example 1.3: empty sequence
+            var emptyForToHashSet =
+                Enumerable.Empty<int>().ToHashSet();
+
+            // Result:
+            // { }
+
+
+
+            // Important:
+            // - Immediate execution
+            // - Removes duplicate elements
+            // - Returns a mutable HashSet<T>
+            // - Preserves uniqueness, not ordering
+
+
             #endregion
 
             #region ToList(); - convert collection to List;
