@@ -2411,6 +2411,59 @@ namespace LINQMethods
 
             #region Prepend(); - add element to the beginning of collection;
 
+            // Prepend<TSource>(TSource element)
+
+
+            // 1. Basic usage
+            var numbersForPrepend = new[] { 2, 3, 4 };
+
+            var resultForPrepend =
+                numbersForPrepend.Prepend(1);
+
+            // Result:
+            // { 1, 2, 3, 4 }
+
+
+
+            // Example 1.1: reference types
+            var wordsForPrepend = new[] { "Banana", "Cherry" };
+
+            var resultWordsForPrepend =
+                wordsForPrepend.Prepend("Apple");
+
+            // Result:
+            // { "Apple", "Banana", "Cherry" }
+
+
+
+            // Example 1.2: chaining with Append
+            var chainedForPrepend =
+                numbersForPrepend
+                    .Prepend(1)
+                    .Append(5);
+
+            // Result:
+            // { 1, 2, 3, 4, 5 }
+
+
+
+            // Example 1.3: does not modify original collection
+            var originalForPrepend = new[] { 10, 20 };
+
+            var newSequenceForPrepend =
+                originalForPrepend.Prepend(5);
+
+            // originalForPrepend remains: { 10, 20 }
+            // newSequenceForPrepend: { 5, 10, 20 }
+
+
+
+            // Important:
+            // - Deferred execution
+            // - Returns a new sequence
+            // - Does not modify the original collection
+            // - Multiple Prepend calls add elements in reverse order of chaining
+
             #endregion
 
             // Equality / Compare sequences
