@@ -2201,6 +2201,77 @@ namespace LINQMethods
 
             #region ToDictionary(); - convert collection to dictionary by specified key and element selectors, with or without comparer;
 
+            // TODO: Check if there are any other overloads of ToDictionary() and demonstrate them
+
+            // 1. Basic keySelector
+            var wordsForToDictionary = new[] { "Apple", "Banana", "Cherry" };
+
+            var dictionaryForToDictionary =
+                wordsForToDictionary.ToDictionary(w => w[0]);
+
+            // Result:
+            // 'A' → "Apple"
+            // 'B' → "Banana"
+            // 'C' → "Cherry"
+
+
+
+            // 2. keySelector + elementSelector
+            var productsForToDictionary = new[]
+            {
+                new { Id = 1, Name = "Apple" },
+                new { Id = 2, Name = "Banana" }
+            };
+
+            var dictionaryWithSelectorForToDictionary =
+                productsForToDictionary.ToDictionary(
+                    p => p.Id,
+                    p => p.Name);
+
+            // Result:
+            // 1 → "Apple"
+            // 2 → "Banana"
+
+
+
+            // 3. From KeyValuePair
+            var kvpForToDictionary = new[]
+            {
+            new KeyValuePair<int, string>(1, "One"),
+            new KeyValuePair<int, string>(2, "Two")
+        };
+
+            var dictionaryFromKvpForToDictionary =
+                kvpForToDictionary.ToDictionary();
+
+            // Result:
+            // 1 → "One"
+            // 2 → "Two"
+
+
+
+            // 4. From ValueTuple
+            var tuplesForToDictionary = new[]
+            {
+                (1, "One"),
+                (2, "Two")
+            };
+
+            var dictionaryFromTupleForToDictionary =
+                tuplesForToDictionary.ToDictionary();
+
+            // Result:
+            // 1 → "One"
+            // 2 → "Two"
+
+
+
+            // Important:
+            // - Immediate execution
+            // - Keys must be unique (otherwise ArgumentException)
+            // - Null keys are not allowed
+            // - Returns a mutable Dictionary<TKey, TValue>
+
             #endregion
 
             #region ToHashSet(); - convert collection to HashSet, with or without comparer;
