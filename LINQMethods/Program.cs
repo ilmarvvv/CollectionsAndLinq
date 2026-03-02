@@ -18,7 +18,7 @@ namespace LINQMethods
 
             // Filtering (Фільтрація)
 
-            #region Where(); - filter elements in collection by specified condition;
+            #region Where(); - filter elements in collection by specified condition (.NET Framework 3.5)
 
             // 1. Where(Func<TSource, bool>)
 
@@ -68,7 +68,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region OfType(); - filter elements by specified type;
+            #region OfType(); - filter elements by specified type (.NET Framework 3.5)
 
             // OfType<TResult>(IEnumerable)
             // <TResult> is the type to return from the collection
@@ -105,7 +105,7 @@ namespace LINQMethods
 
             // Projection (Проекція/перетворення)
 
-            #region Select(); - project (transform) each element into a new form;
+            #region Select(); - project (transform) each element into a new form (.NET Framework 3.5)
 
             // 1. Select(Func<TSource, TResult>)
 
@@ -150,7 +150,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region SelectMany(); - project (transform) each element of a collection to an IEnumerable<T> and flatten the resulting collections into one collection;
+            #region SelectMany(); - transform each element into an IEnumerable<T> and flatten all inner sequences into a single sequence (.NET Framework 3.5)
 
             var ordersForSelectMany = new List<OrderForSelectMany>
             {
@@ -207,7 +207,12 @@ namespace LINQMethods
 
             #endregion
 
-            #region Zip(); - combines elements from sequences based on their index (position);
+            #region Zip(); - combines elements from sequences based on their index (position) (.NET Framework 4.0)
+
+            // TODO: Find out about overloads
+            // - .NET 4.0 Zip<TFirst, TSecond, TResult>
+            // - .NET Core 2.0 Zip<TFirst, TSecond>
+            // - .NET 6.0 Zip<TFirst, TSecond, TThird>
 
 
             var numbersForZip = new[] { 1, 2, 3 };
@@ -255,7 +260,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Index(); - add index for each elements in collection;
+            #region Index(); - add index for each elements in collection (.NET 9)
 
             var items = new[] { "Apple", "Banana", "Orange" };
 
@@ -269,7 +274,7 @@ namespace LINQMethods
 
             // Sorting (Сортування)
 
-            #region Order(); - sort elements in ascending order (e.g. A–Z, 1–9);
+            #region Order(); - sort elements in ascending order (e.g. A–Z, 1–9) (.NET 7)
 
             // 1. Order<T>(IEnumerable<T>)
 
@@ -297,7 +302,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region OrderBy(); - sort elements in collection in ascending order by specified key, with or without comparer;
+            #region OrderBy(); - sort elements in collection in ascending order by specified key, with or without comparer (.NET Framework 3.5)
 
             var peopleForOderdBy = new[]
             {
@@ -328,7 +333,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region OrderDescending(); - sort elements in descending order (e.g. Z–A, 9–1)
+            #region OrderDescending(); - sort elements in descending order (e.g. Z–A, 9–1) (.NET 7)
 
             // 1. OrderDescending<T>() - sort using default comparison
 
@@ -350,7 +355,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region OrderByDescending(); - sort elements in descending order by specified key (e.g. Z–A, 9–1), with or without comparer
+            #region OrderByDescending(); - sort elements in descending order by specified key (e.g. Z–A, 9–1), with or without comparer (.NET Framework 3.5)
 
             var peopleForOrderByDes = new[]
                         {
@@ -381,7 +386,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region ThenBy(); - secondary sort for elements with equal keys from OrderBy();
+            #region ThenBy(); - secondary sort for elements with equal keys from OrderBy() (.NET Framework 3.5)
 
             var peopleForThenBy = new[]
             {
@@ -412,7 +417,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region ThenByDescending(); - secondary sort in descending order for elements with equal keys from OrderBy;
+            #region ThenByDescending(); - secondary sort in descending order for elements with equal keys from OrderBy (.NET Framework 3.5)
 
             var peopleForThenByDesc = new[]
             {
@@ -444,7 +449,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Reverse(); - reverse the order of elements in a sequence (without sorting)
+            #region Reverse(); - reverse the order of elements in a sequence (without sorting) (.NET Framework 3.5)
 
             // 1. Reverse<T>()
 
@@ -461,7 +466,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Shuffle(); - randomly shuffle elements in collection;
+            #region Shuffle(); - randomly shuffle elements in collection (.NET 10)
 
             var numbersForShuffle = new[] { 1, 2, 3, 4, 5 };
             var resultForShuffle = numbersForShuffle.Shuffle();
@@ -472,7 +477,7 @@ namespace LINQMethods
 
             // Partitioning (Порції/пагінація)
 
-            #region Skip(); - skip a specified number of elements from the start of a sequence
+            #region Skip(); - skip a specified number of elements from the start of a sequence (.NET Framework 3.5)
 
             // 1. Skip<TSource>(IEnumerable<TSource>, int)
             var numbersForSkip = new[] { 1, 2, 3, 4, 5 };
@@ -495,7 +500,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region SkipLast(); - skip a specified number of elements from the end of a sequence
+            #region SkipLast(); - skip a specified number of elements from the end of a sequence ( .NET Core 3.0)
 
             // 1. SkipLast<TSource>(IEnumerable<TSource>, int)
             var numbersForSkipLast = new[] { 1, 2, 3, 4, 5 };
@@ -506,7 +511,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region SkipWhile(); - skip elements in collection while condition is true
+            #region SkipWhile(); - skip elements in collection while condition is true (.NET Framework 3.5)
 
             var numbersForSkipWhile = new[] { 1, 2, 3, 4, 1, 2 };
 
@@ -523,7 +528,9 @@ namespace LINQMethods
 
             #endregion
 
-            #region Take(); - take elements from the start of a sequence or by range
+            #region Take(); - take elements from the start of a sequence or by range (.NET Framework 3.5)
+
+            // TODO: Add example for Take with range (available since .NET 6) and explain how it works with index and range operators
 
             var numbersForTake = new[] { 1, 2, 3, 4, 5, 6 };
 
@@ -540,7 +547,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region TakeLast(); - take a specified number of elements from the end of a sequence
+            #region TakeLast(); - take a specified number of elements from the end of a sequence (.NET Core 3.0)
 
             // TakeLast<TSource>(int count)
             var numbersForTakeLast = new[] { 1, 2, 3, 4, 5 };
@@ -549,7 +556,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region TakeWhile(); - take elements from collection while condition is true
+            #region TakeWhile(); - take elements from collection while condition is true (.NET Framework 3.5)
 
             var numbersForTakeWhile = new[] { 1, 2, 3, 4, 5, 6 };
 
@@ -562,12 +569,12 @@ namespace LINQMethods
             var numbersForTakeWhileWithIndex = new[] { 1, 2, 3, 10, 4, 5 };
             var resultWithIndexForTakeWhile = numbersForTakeWhileWithIndex
                 .TakeWhile((value, index) => value < 5 && index < 3); // take while value < 5 and index < 3
-            // Result: 1, 2, 3
+                                                                      // Result: 1, 2, 3
 
             #endregion
 
-            #region Chunk(); - split collection into smaller collections of specified size;
-            
+            #region Chunk(); - split collection into smaller collections of specified size (.NET 6)
+
             int[] array = { 1, 2, 3, 4, 5, 6, 7 };
 
             // Chunk(int) - split array into chunks of specified size
@@ -588,7 +595,7 @@ namespace LINQMethods
 
             // Set operations (Множини)
 
-            #region Distinct(); - remove duplicate elements from a sequence
+            #region Distinct(); - remove duplicate elements from a sequence (.NET Framework 3.5)
 
             var numbersForDistinct = new[] { 1, 2, 2, 3, 4, 4, 5 };
 
@@ -607,7 +614,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region DistinctBy(); - remove duplicate elements from a sequence by key (.NET 6+)
+            #region DistinctBy(); - remove duplicate elements from a sequence by key (.NET 6)
 
             var peopleForDistinctBy = new[]
             {
@@ -638,7 +645,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Union(); - produce the set union of two sequences and remove duplicates;
+            #region Union(); - produce the set union of two sequences and remove duplicates (.NET Framework 3.5)
 
             var firstForUnion = new[] { 1, 2, 3, 4 };
             var secondForUnion = new[] { 3, 4, 5, 6 };
@@ -660,7 +667,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region UnionBy(); - produce the set union of two sequences by key and remove duplicates (.NET 6+)
+            #region UnionBy(); - produce the set union of two sequences by key and remove duplicates (.NET 6)
 
             var firstForUnionBy = new[]
             {
@@ -694,7 +701,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Intersect(); - produce the set intersection of two sequences and remove duplicates
+            #region Intersect(); - produce the set intersection of two sequences and remove duplicates (.NET Framework 3.5)
 
             var firstForIntersect = new[] { 1, 2, 3, 4, 5 };
             var secondForIntersect = new[] { 3, 4, 5, 6, 7 };
@@ -716,7 +723,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region IntersectBy(); - get common elements from two collections by specified key;
+            #region IntersectBy(); - get common elements from two collections by specified key (.NET 6)
 
             // 1. IntersectBy(IEnumerable<TKey>, Func<TSource, TKey>) - by key selector
             var usersForIntersect = new[]
@@ -750,7 +757,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Except(); - produce the set difference of two sequences and remove duplicates
+            #region Except(); - produce the set difference of two sequences and remove duplicates (.NET Framework 3.5)
             // What is in the first collection but not in the second
 
             var firstForExcept = new[] { 1, 2, 3, 4, 5 };
@@ -772,7 +779,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region ExceptBy(); - produce the set difference of a sequence by key (.NET 6+)
+            #region ExceptBy(); - produce the set difference of a sequence by key (.NET 6)
             // What is in first collection but not in second (by key)
 
             var peopleForExceptBy = new[]
@@ -805,7 +812,7 @@ namespace LINQMethods
 
             // Element operations (Вибір елемента)
 
-            #region First(); - return the first element of a sequence, with or without a condition
+            #region First(); - return the first element of a sequence, with or without a condition (.NET Framework 3.5)
             // Get the first element from a sequence or the first element that satisfies a condition
 
             var numbersForFirst = new[] { 1, 3, 4, 6 };
@@ -832,7 +839,11 @@ namespace LINQMethods
 
             #endregion
 
-            #region FirstOrDefault(); - get first element from collection or default value if collection is empty, with or without condition;
+            #region FirstOrDefault(); - get first element from collection or default value if collection is empty, with or without condition (.NET Framework 3.5)
+
+            // TODO: Add example for overloads with default value (available since .NET 6) and explain how it works
+            // - FirstOrDefault(defaultValue)
+            // - FirstOrDefault(predicate, defaultValue)
 
             int[] numbersForFirstOrDefault = { 1, 3, 4, 6 };
 
@@ -863,7 +874,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Last(); - get last element from collection, with or without condition;
+            #region Last(); - get last element from collection, with or without condition (.NET Framework 3.5)
 
             int[] numbersForLast = { 1, 3, 4, 6 };
 
@@ -890,7 +901,11 @@ namespace LINQMethods
 
             #endregion
 
-            #region LastOrDefault(); - get last element from sequence or default value if sequence is empty, with or without condition;
+            #region LastOrDefault(); - get last element from sequence or default value if sequence is empty, with or without condition (.NET Framework 3.5)
+
+            // TODO: Add example for overloads with default value (available since .NET 6) and explain how it works
+            // - LastOrDefault(defaultValue)
+            // - LastOrDefault(predicate, defaultValue)
 
             int[] numbersForLastOrDefault = { 1, 3, 4, 6 };
 
@@ -925,7 +940,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Single(); - get single element from collection, with or without condition;
+            #region Single(); - get single element from collection, with or without condition (.NET Framework 3.5)
             // Single means that the sequence must contain exactly one element (or exactly one matching element),
             // otherwise thrown an InvalidOperationException
 
@@ -957,7 +972,11 @@ namespace LINQMethods
 
             #endregion
 
-            #region SingleOrDefault(); - get single element from collection or default value if collection is empty, with or without condition;
+            #region SingleOrDefault(); - get single element from collection or default value if collection is empty, with or without condition (.NET Framework 3.5)
+
+            // TODO: Add example for overloads with default value (available since .NET 6) and explain how it works
+            // - SingleOrDefault(defaultValue)
+            // - SingleOrDefault(predicate, defaultValue)
 
             // 1. SingleOrDefault<TSource>() - return the only element of the sequence or default(T) if the sequence is empty
             int[] singleItemForSingleOrDefault = { 42 };
@@ -1001,7 +1020,10 @@ namespace LINQMethods
 
             #endregion
 
-            #region ElementAt(); - get element at specified index, with or without default value;
+            #region ElementAt(); - get element at specified index, with or without default value (.NET Framework 3.5)
+
+            // TODO: Add example for overload with default value (available since .NET 6) and explain how it works
+            // - ElementAt(Index index)
 
             int[] numbersForElementAt = { 10, 20, 30, 40 };
 
@@ -1031,7 +1053,10 @@ namespace LINQMethods
 
             #endregion
 
-            #region ElementAtOrDefault(); - get element at specified index or default value if index is out of range;
+            #region ElementAtOrDefault(); - get element at specified index or default value if index is out of range (.NET Framework 3.5)
+
+            // TODO: Add example for overload with default value (available since .NET 6) and explain how it works
+            // - ElementAtOrDefault(Index index)
 
             int[] numbersForElementAtOrDefault = { 10, 20, 30, 40 };
 
@@ -1062,7 +1087,7 @@ namespace LINQMethods
 
             // Quantifiers (Перевірки)
 
-            #region All(); - check if all elements satisfy a condition;
+            #region All(); - check if all elements satisfy a condition or if the sequence is empty (.NET Framework 3.5)
 
             // 1. All<TSource>(Func<TSource, bool>) - return true if all elements satisfy the condition
             int[] numbersForAll = { 2, 4, 6, 8 };
@@ -1091,7 +1116,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Any(); - check if any element satisfies a condition or if the sequence contains any elements;
+            #region Any(); - check if any element satisfies a condition or if the sequence contains any elements (.NET Framework 3.5)
 
             int[] numbersForAny = { 1, 3, 4, 7 };
 
@@ -1124,7 +1149,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Contains(); - check if collection contains specified element;
+            #region Contains(); - check if collection contains specified element (.NET Framework 3.5)
 
             string[] wordsForContains = { "Apple", "Banana", "Orange" };
 
@@ -1161,7 +1186,7 @@ namespace LINQMethods
 
             // Aggregation (Агрегація)
 
-            #region Count(); - count elements in collection, with or without condition;
+            #region Count(); - count elements in collection, with or without condition (.NET Framework 3.5)
 
             int[] numbersForCount = { 1, 3, 4, 6 };
 
@@ -1192,7 +1217,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region CountBy(); - count elements in collection by specified key, with or without condition;
+            #region CountBy(); - count elements in collection by specified key, with or without condition (.NET 9)
 
             People[] peopleForCountBy =
             {
@@ -1227,7 +1252,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region LongCount(); - count elements in collection, with or without condition, returns long type;
+            #region LongCount(); - count elements in collection, with or without condition, returns long type (.NET Framework 3.5)
 
             int[] numbersForLongCount = { 1, 3, 4, 6 };
 
@@ -1253,7 +1278,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region TryGetNonEnumeratedCount(); - try to get count of elements in collection without enumerating it;
+            #region TryGetNonEnumeratedCount(); - try to get count of elements in collection without enumerating it (.NET 6)
             // TryGetNonEnumeratedCount() does NOT count elements. It checks whether the sequence already knows its exact count.
 
             int[] numbersForTryGetNonEnumeratedCount = { 1, 2, 3, 4 };
@@ -1296,7 +1321,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Max(); - get maximum value from numeric collection, with or without selector;
+            #region Max(); - get maximum value from numeric collection, with or without selector (.NET Framework 3.5)
 
             int[] numbersForMax = { 1, 3, 4, 6 };
 
@@ -1346,7 +1371,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region MaxBy(); - get element with maximum key value from collection;
+            #region MaxBy(); - get element with maximum key value from collection (.NET 6)
 
             People[] peopleForMaxBy =
             {
@@ -1389,7 +1414,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Min(); - get minimum value from numeric collection, with or without selector;
+            #region Min(); - get minimum value from numeric collection, with or without selector (.NET Framework 3.5)
 
             int[] numbersForMin = { 1, 3, 4, 6 };
 
@@ -1439,7 +1464,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region MinBy(); - get element with minimum key value from collection;
+            #region MinBy(); - get element with minimum key value from collection (.NET 6)
 
             People[] peopleForMinBy =
             {
@@ -1490,12 +1515,12 @@ namespace LINQMethods
 
             #endregion
 
-            #region Sum(); - calculate sum of numeric collection, with or without selector;
+            #region Sum(); - calculate sum of numeric collection, with or without selector (.NET Framework 3.5)
 
             // Sum() has meny overloads for different numeric types(int, double, float, decimal, long, short, byte)
             // and their nullable versions(int?, double?, float?, decimal?, long?, short?, byte?)
 
-            
+
             int[] numbersForSum = { 1, 3, 4, 6 };
 
             // 1.Sum() - returns the total sum of numeric elements
@@ -1547,7 +1572,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Average(); - calculate average value of numeric collection;
+            #region Average(); - calculate average value of numeric collection (.NET Framework 3.5)
 
             // Average() has meny overloads for different numeric types(int, double, float, decimal, long, short, byte)
             // and their nullable versions(int?, double?, float?, decimal?, long?, short?, byte?)
@@ -1614,7 +1639,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Aggregate(); - Universal method can be used for any mathematic operation and concatenation with any type and more...
+            #region Aggregate(); - Universal method can be used for any mathematic operation and concatenation with any type and more... (.NET Framework 3.5)
 
             // Aggregate(Func<TSource, TSource, TSource>)
             // Work similar like Sum, but can use all type(int, double, string), and all operations(+, -, *, /, % ...)
@@ -1648,13 +1673,15 @@ namespace LINQMethods
 
             #endregion
 
-            #region AggregateBy(); - Universal method can be used for any mathematic operation and concatenation with any type and more... with key selector;
+            #region AggregateBy(); - Universal method can be used for any mathematic operation and concatenation with any type and more (.NET 9)
+
+            // TODO: Fill this method with examples and explain how it works
 
             #endregion
 
             // Grouping (Групування)
 
-            #region GroupBy(); - group elements in collection by specified key;
+            #region GroupBy(); - group elements in collection by specified key (.NET Framework 3.5)
 
             var pet = new[]
             {
@@ -1770,7 +1797,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region ToLookup(); - convert collection to Lookup by specified key and element selectors, with or without comparer;
+            #region ToLookup(); - convert collection to Lookup by specified key and element selectors (.NET Framework 3.5) 
 
             // 1. ToLookup(keySelector)
             string[] wordsForToLookup = { "apple", "banana", "apricot", "blueberry" };
@@ -1830,7 +1857,7 @@ namespace LINQMethods
 
             // Joins (З’єднання)
 
-            #region Join(); - correlate elements from two collections based on matching keys;
+            #region Join(); - correlate elements from two collections based on matching keys and project the result (.NET Framework 3.5)
 
             // 1. Join(outer, inner, outerKeySelector, innerKeySelector, resultSelector) - without comparer
             int[] firstJoin = { 1, 2, 3 };
@@ -1856,15 +1883,19 @@ namespace LINQMethods
 
             #endregion
 
-            #region LeftJoin(); - perform left outer join between two collections;
+            #region LeftJoin(); - perform left outer join between two collections (.NET 10)
+
+            // TODO: Fill this method with examples and explain how it works
 
             #endregion
 
-            #region RightJoin(); - perform right outer join between two collections;
+            #region RightJoin(); - perform right outer join between two collections (.NET 10)
+
+            // TODO: Fill this method with examples and explain how it works
 
             #endregion
 
-            #region GroupJoin(); - correlate elements from two collections based on matching keys and group the results;
+            #region GroupJoin(); - correlate elements from two collections based on matching keys and group the results (.NET Framework 3.5)
 
             // 1. GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector) - without comparer
 
@@ -1927,7 +1958,7 @@ namespace LINQMethods
 
             // Generation (Генерація послідовностей)
 
-            #region Empty(); - create an empty collection of specified type;
+            #region Empty(); - create an empty collection of specified type (.NET Framework 3.5)
 
             // 1. Basic usage
             var emptyIntsForEmpty = Enumerable.Empty<int>();
@@ -1973,7 +2004,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Range(); - create a collection with a range of sequential numbers;
+            #region Range(); - create a collection with a range of sequential numbers (.NET Framework 3.5)
 
             // 1.Range(int start, int count)
             var rangeForRange = Enumerable.Range(1, 5);
@@ -2012,7 +2043,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Repeat(); - create a collection with repeated elements;
+            #region Repeat(); - create a collection with repeated elements (.NET Framework 3.5)
 
             // Repeat<TResult>(TResult element, int count)
 
@@ -2054,7 +2085,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region InfiniteSequence(); - create an infinite collection by specified generator function;
+            #region InfiniteSequence(); - create an infinite collection by specified generator function (.NET 10)
 
             // Enumerable.InfiniteSequence<T>(T start, T step)
             // where T : IAdditionOperators<T, T, T>
@@ -2083,7 +2114,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Sequence(); - generate a sequence of values based on a generator function;
+            #region Sequence(); - generate a sequence of values based on a generator function and specified start, step and end values (.NET 10)
 
             // 1. Sequence(start, step, endInclusive)
             var sequenceForSequence =
@@ -2119,14 +2150,14 @@ namespace LINQMethods
 
             // Conversion / Materialization (Конвертація / матеріалізація)
 
-            #region AsEnumerable(); - convert collection to IEnumerable type;
+            #region AsEnumerable(); - convert collection to IEnumerable type (.NET Framework 3.5)
 
             // AsEnumerable() - used to convert a collection to IEnumerable<T> usually for LINQ operations that require IEnumerable<T> input.
             var asEnumerable = new int[] { 1, 2, 3 }.AsEnumerable().Where(x => x > 1); // Output: 2 3
 
             #endregion
 
-            #region Cast(); - convert collection to specified type used on collection without generic type ArrayList, Hashtable, IEnumerable(old);
+            #region Cast(); - convert collection to specified type used on collection without generic type ArrayList, Hashtable, IEnumerable(old) (.NET Framework 3.5)
 
             ArrayList list = new ArrayList() { 1, 2, 3 };
 
@@ -2139,7 +2170,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region ToArray(); - convert collection to array;
+            #region ToArray(); - convert collection to array (.NET Framework 3.5)
 
             // ToArray<TSource>(IEnumerable<TSource> source)
 
@@ -2199,7 +2230,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region ToDictionary(); - convert collection to dictionary by specified key and element selectors, with or without comparer;
+            #region ToDictionary(); - convert collection to dictionary by specified key and element selectors, with or without comparer (.NET Framework 3.5)
 
             // TODO: Check if there are any other overloads of ToDictionary() and demonstrate them
 
@@ -2274,7 +2305,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region ToHashSet(); - convert collection to HashSet, with or without comparer;
+            #region ToHashSet(); - convert collection to HashSet, with or without comparer (.NET Core 2.0)
 
             // 1. Basic usage
             var numbersForToHashSet = new[] { 1, 2, 2, 3, 3, 3 };
@@ -2326,7 +2357,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region ToList(); - convert collection to List;
+            #region ToList(); - convert collection to List (.NET Framework 3.5)
 
             // ToList<TSource>(IEnumerable<TSource> source)
 
@@ -2390,7 +2421,7 @@ namespace LINQMethods
 
             // Concatenation (Склеювання)
 
-            #region Concat(); - combine two collections in one
+            #region Concat(); - combine two collections in one (.NET Framework 3.5)
 
             // Concat(IEnumerable<TSource>)
             int[] a = { 1, 2, 3 };
@@ -2401,7 +2432,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Append(); - add element to the end of collection;
+            #region Append(); - add element to the end of collection (.NET Core 2.0)
 
             // Append(TSource)
             // Adds an element to the end of a sequence.
@@ -2409,7 +2440,7 @@ namespace LINQMethods
 
             #endregion
 
-            #region Prepend(); - add element to the beginning of collection;
+            #region Prepend(); - add element to the beginning of collection (.NET Core 2.0)
 
             // Prepend<TSource>(TSource element)
 
@@ -2468,7 +2499,7 @@ namespace LINQMethods
 
             // Equality / Compare sequences
 
-            #region SequenceEqual(); - check if two collections are equal;
+            #region SequenceEqual(); - check if two collections are equal (.NET Framework 3.5)
 
             // 1. Basic usage
             var firstForSequenceEqual = new[] { 1, 2, 3 };
@@ -2549,7 +2580,7 @@ namespace LINQMethods
 
             // Default/Null-safety
 
-            #region DefaultIfEmpty(); - provide default or custom value if collection is empty;
+            #region DefaultIfEmpty(); - provide default or custom value if collection is empty (.NET Framework 3.5)
 
             var defaultIfEmpty = new int[] { }.DefaultIfEmpty(); // {0} because the default value for int is 0
 
